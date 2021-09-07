@@ -19,6 +19,8 @@ This document may look long and complicated, but don’t worry! A lot of it is i
     - How to convert the FastTrack output into something more usable.
 6. [**Plotting the Data**](#plotting-the-data)
     - Using R to plot voices and vowels.
+7. [**Add to the Guide**](#add-to-the-guide)
+    - How to edit Markdown, and how to use GitHub to update this guide.
 
 ## The Command Line
 ### What is a command line, and why is it useful?
@@ -115,6 +117,7 @@ One option is [Homebrew](https://brew.sh/), which you can install by pasting thi
 You can also find the script above at on their [homepage](https://brew.sh/). Other installation options are [here](https://docs.brew.sh/Installation).
 
 Homebrew commands start with brew, followed by another command. The essential commands are:
+
 - `search [insert text here]` - This searches libraries for software
 - `install [insert software name here]` - This installs software
 - `uninstall [insert software name here]` - This uninstalls software
@@ -207,6 +210,7 @@ There’s also an option called [Chocolatey](https://www.pcworld.com/article/245
 ## Praat
 ### What is Praat?
 [Praat](https://www.fon.hum.uva.nl/praat/) is a free phonetic analysis software. You can use Praat to:
+
 - See waveforms and spectrograms
 - Track pitch
 - Track vowel formants
@@ -332,6 +336,7 @@ Alternatively, if you just want to install Python and not Conda, you can do so f
 [Install Python on Windows](https://realpython.com/installing-python/#how-to-install-python-on-windows)
 
 No matter what operating system you’re on, installing Python follows the same two-step process:
+
 1. Checking to see if you already have Python, and if so, what version you have
 2. Installing or updating Python
 
@@ -369,6 +374,7 @@ You can find the acoustic models and dictionaries for all the languages MFA curr
 ### Using MFA
 #### Instructions
 The command to run the MFA is `mfa align`, and in order for it to work, you have to specify four things, in this order:
+
 1. Where the sound file and TextGrid are (aka the input directory)
 2. Which dictionary you’re using, including its location in your files
 3. Which acoustic model you’re using, including its location in your files
@@ -544,16 +550,19 @@ The `aggregated_data.csv` file that FastTrack gives us is comprehensive but it�
 There are three different ways you can do this:
 
 [**Method 1: Via spreadsheet**](#spreadsheet-method)
+
 - Nothing new to install
 - Manual data entry and manipulation
 - No coding but more effort
 
 [**Method 2: Via Python in Jupyter Notebook**](#jupyter-notebook-method)
+
 - Requires installing some new things
 - Comes with a template, only needs minimal changes to work
 - Involves some general knowledge about Python but less work
 
 [**Method 3: Via Python script `organize.py`**](#python-script-method)
+
 - Requires installing one new thing
 - Runs from the command line; no knowledge of Python needed
 - All the work is done for you, but you have very little freedom regarding the output you get
@@ -573,6 +582,7 @@ Once you open the file, it should look something like this:
 ![spreadsheet-2](https://lh3.googleusercontent.com/pw/AM-JKLXKEwal05hCAWENS3OD4mr419cvHLKeatMHg285jRhEyaBxXatsu1-k0g-vz3ipRLc-nDPoT0WrHzYdZrv00auk2vdNd9p12u3dgQruuUm6QuvXXccIuKVPdMCC176bbqmr09Kqum2kcVXvkc2rxohc=w1857-h516-no?authuser=0)
 
 `aggregated_data.csv` has the following columns:
+
 - `file`, which refers to the vowel sound file extracted by FastTrack
 - `f0`, which is the pitch
 - `duration`, which is is the length of the vowel
@@ -634,6 +644,7 @@ At this point, since 'group' and 'color' really only have to do with FastTrack's
 
 #### Average vowel formants
 To find a vowel's average formants, take the mean of the middle three temporal bins. In other words,
+
 - the average of F1 is the average of 'f12', 'f13', and 'f14'
 - the average of F2 is the average of 'f22', 'f23', and 'f24'
 - the average of F3 is the average of 'f32', 'f33', and 'f34'
@@ -689,10 +700,11 @@ The vocal tract is essentially a tube that is closed at one end—the glottis—
 $f_{n} = \frac{(2n-1)c}{4L}$
 
 In this formula,
-- 𝑓   = frequency (Hz)
-- 𝑛  = resonance number (e.g. 1=first formant, 2=second formant, etc.)
-- 𝑐  = speed of sound (35,000<sup>cm/s</sup> in warm moist air)
-- 𝐿  = vocal tract length (cm)
+
+- $f$ = frequency (Hz)
+- $n$ = resonance number (e.g. 1=first formant, 2=second formant, etc.)
+- $c$ = speed of sound (35,000<sup>cm/s</sup> in warm moist air)
+- $L$ = vocal tract length (cm)
 
 Solving for length, we get:
 
@@ -790,18 +802,22 @@ You can close Jupyter notebook by going to your command line and pressing Ctrl+C
 A Jupyter **computational notebook** is a document-based approach to structuring programming, modeling, data analysis etc. It is a form of [literate programming](https://en.wikipedia.org/wiki/Literate_programming).
 
 A computational notebook is made up of a set of elements called cells that group little bits of information together. There are two main kinds of cells:
+
 - text cells, specifically, Markdown cells; we'll come back to Markdown
 - code cells, in our case, Python code cells
 
 The file extension of a notebook document has the .ipynb file extension.
+
 - `.ipynb` for "IPython Notebook", the original version of Jupyter notebooks developed as a particular kind of interface for [IPython](https://en.wikipedia.org/wiki/IPython)
 
 A notebook is a list of cells arranged from the top of the document to the bottom.
+
 - cells can contain several types of information, including code, text, images and so forth.
 
 You develop your project by creating new cells, entering information, reordering cells, and saving the results.
 
 The key element which makes a notebook "computational" is that it can be linked to a computing engine known as a "kernel", which can run on the same computer or another computer using the Internet.
+
 - The kernel is separate from the notebook and can be stopped and started independently from the program displaying the notebook itself
 - The magic happens when a code cell is "executed"
     - you can also "execute" a text cell, which just renders the text from Markdown annotation to something easily readable by a human
@@ -814,6 +830,7 @@ The notebook is simply a way to organize information and the order of informatio
 For example, you can execute a code cell at the end of the document first, and then go back to the beginning of the document and run a cell there. This happens often when you develop your project.
 
 Thus, the order of the cells in the notebook document is really just for presentation, and it is up to you to "run/execute" the cells in whatever order you want.
+
 - for example, if you delete a cell after running it, it doesn't appear in the notebook anymore but its code has not been "undone" on the kernel
 - the kernel doesn't know anything about any edits you make to the notebook interface; all it does is receive code when you send it via the "execute cell" command, runs the code, sends back the outputs, and then it waits
 
@@ -847,6 +864,7 @@ Markdown cells use markdown syntax for formatting. So for italics, you can use `
 
 ###### Code cells
 Code cells can contain any valid Python code in them. When you run the cell, the code is executed and the outputs (if any) are displayed.
+
 - You can execute cells with **Ctrl+Enter**, which will keep the cell selected
 - You can also execute cells with **Shift+Enter**, which will select the next cell
 
@@ -900,6 +918,7 @@ The structure of the command to run the script looks like this, with optional pa
 `python3 path_to_script/organize.py path_to_output_directory_1/processed_data/aggregated_data.csv (path_to_output_directory_2/processed_data/aggregated_data.csv...) (export (path_to_destination_for_organized_data/))`
 
 This command contains, in order:
+
 - the command to use Python, `python3`
 - the path from your current location to the Python script `organize.py`
 - the path from your current location to the `aggregated_data.csv` file you want to organize
@@ -1111,6 +1130,7 @@ The other way is using [RStudio](https://www.rstudio.com/), which provides an ea
 [**An introduction to ggplot**](http://kweatherholtz.github.io/blog/intro-to-ggplot/) (slideshow [here](http://kweatherholtz.github.io/tutorials/ggplot/ggplot_ling_tutorial.html))
 
 To make a plot, ggplot needs at least three things:
+
 1. A **dataframe** (you can use a .csv file for this)
 2. A set of **aesthetic mappings**
     - These describe how variables in a data frame are mapped to graphical attributes.
@@ -1135,6 +1155,7 @@ We won’t talk about these plotting methods here, but they’re options to expl
 Here’s where you’ll need that vocal tract length information that you found.
 
 As discussed earlier, vocal tract length tends to be correlated with gender. But pitch also tends to be correlated with gender.
+
 - Men tend to have longer and thicker vocal folds, which leads to slower vocal fold vibration, i.e. a lower fundamental frequency or pitch
 - Women tend to have shorter vocal tracts and shorter and thinner vocal folds, which leads to faster vocal fold vibration, i.e. a higher fundamental frequency or pitch
 
@@ -1346,4 +1367,73 @@ The current code for plots like these is here:
 
 `ggplot(data, aes(x = f2_mean, y = f1_mean)) + geom_density_2d(aes(color = label)) + scale_y_reverse() + scale_x_reverse()`
 
-## ???
+## Add to the Guide
+As you can see in the previous section, this guide is still a work in progress. There are things that I haven't figured out, and there are undoubtedly more useful phonetic analysis softwares that haven't been discussed here. That's why in this last section, I'll tell you how to modify this guide.
+
+### Markdown
+This guide is written in [Markdown](https://www.markdownguide.org/getting-started/), which is a [markup language](https://en.wikipedia.org/wiki/Markup_language) similar to HTML but much, much simpler. The benefit of Markdown is that it's easy to read in editing mode.
+
+[**Here again is a helpful cheatsheet for markdown syntax**](https://www.markdownguide.org/basic-syntax/)
+
+#### Text Editors for Markdown
+
+When it comes to editing Markdown, you don't want to use Microsoft Word or LibreOffice or anything similar. Those softwares are a bad choice for Markdown because they're designed to show you what the text would look like on the page as you edit it, whereas Markdown in its editing mode looks different than when it's compiled. So if you're using Microsoft Word or something similar, the pages and the buttons aren't really doing anything for you.
+
+Instead, you want a text editor that highlights markup syntax so that it's even easier to read. There are a lot of free, open source options you can download: [here's a list](https://kinsta.com/blog/best-text-editors/).
+
+I personally prefer [Atom](https://atom.io/), which can be installed on [Mac](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-mac), [Windows](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-windows), or [Linux](https://flight-manual.atom.io/getting-started/sections/installing-atom/). But any editor for the list should work.
+
+### GitHub
+This guide is stored in a public repository on [GitHub](https://github.com/), which makes it easy to for other people to modify. GitHub is basically a service for hosting projects in a way that allows for easy collaboration. A repository is just a project and all the files that make it up.
+
+If you want to modify this guide, you can [clone the repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) or [fork the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Cloning a repository downloads a copy of all the files onto your own computer, which you can then edit. In contrast, forking a repository creates a copy of the repository on your GitHub account, but not on your local computer. (Of course, after forking a repository you can always clone it onto your computer afterwards.)
+
+Once you're done editing, if you want to put your changes into the original repository (as opposed to your forked one), you can open a [pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). If it's accepted, your changes will be merged into the original repository.
+
+### Converting to PDF
+A convenient part of Markdown is that images are very easy to embed as long as they're on the internet somewhere and you can provide a url to them. But urls on the internet can change or disappear. So if an image's url disappears or changes, you won't be able to see the image anymore.
+
+If you're worried about your images disappearing, one workaround is to create a PDF. PDFs are self-contained, so an image in a PDF won't change even if the image's location on the internet changes.
+
+Unfortunately, converting Markdown directly to a PDF doesn't really work. (Even if you can get a PDF, that has the images, it won't have links embedded in the text, or the links won't be clickable.)
+
+However, it's a lot easier to convert Markdown to HTML, and HTML to PDF.
+
+(Why not just write the guide in HTML to begin with? Because Markdown is a lot more human-readable in the editing process than HTML.)
+
+#### Converting Markdown to HTML
+To convert Markdown into HTML, you can use a command line tool called [`markdown`](https://daringfireball.net/projects/markdown/).
+
+You can install `markdown` from the command line with your package manager (e.g. `sudo apt-get install markdown` on Linux or `brew install markdown` if you have Homebrew).
+
+Once you have markdown installed, the command for converting Markdown to HTML looks like this:
+
+`markdown file.md > file.html`
+
+In this command, the `.md` file is an existing Markdown file that you want to convert to a HTML file, and the `.html` file that will be created as the output. Replace the names as needed.
+
+For more information on the “markdown” command, run this command: `man markdown`
+
+#### Converting HTML to PDF
+**WARNING**
+\
+- The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between <code>```three backticks```</code>, all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
+- In addition, since multi-line code blocks are not recognized, underscores in those code blocks will be converted into `<em>` and `</em>`, which will also have to be fixed by hand.
+- If you don't put a line of space between a regular paragraph and a list in Markdown, the list will not be converted into a list in HTML.
+- LaTeX equations in Markdown, sandwiched between `$dollar signs$`, are not converted into HTML equations.
+- Here are some HTML cheatsheets:
+  - [PDF cheatsheet](https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf)
+  - [Interactive cheatsheet](https://htmlcheatsheet.com/)
+  - [Static website cheatsheet](http://www.simplehtmlguide.com/cheatsheet.php)
+
+Once you have a `.html` file, you can convert it to a PDF in a few different ways. There are a couple command line options, namely [`wkhtmltopdf`](https://wkhtmltopdf.org/) and [`weasyprint`](https://doc.courtbouillon.org/weasyprint/stable/index.html), but for this task I think it's actually easier to just use one of the websites available for HTML to PDF conversion.
+
+- [Sejda](https://www.sejda.com/html-to-pdf)
+- [Pdfcrowd](https://pdfcrowd.com/)
+- [HTML to PDF](https://html2pdf.com/)
+- [Soda PDF](https://www.sodapdf.com/html-to-pdf/)
+
+These websites will convert the `.html` file to a `.pdf` file, which you can then download. And that's it!
+
+## License
+This guide is licensed on GitHub under the Creative Commons CC0 Public Domain Dedication. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. [See here for more details.](https://creativecommons.org/publicdomain/zero/1.0/)
