@@ -1,5 +1,5 @@
 # A Guide to Phonetic Analysis Software
-*Last updated: 2 Sept 2021*
+*Last updated: 7 Sept 2021*
 
 This guide explains how to use a number of softwares for phonetic analysis and provides step-by-step instructions on how to get vowel data out of audio files.
 
@@ -1322,7 +1322,7 @@ ggplot(data, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
 ```
 
 ##### Plots Source
-The vowel plots so far are based come from [**Making vowels in R (Part 1)**](https://joeystanley.com/blog/making-vowel-plots-in-r-part-1), and the code so far was adapted from this tutorial to work for our organized data. This tutorial gives a deeper explanation of the bits and pieces that make up the plots.
+The vowel plots so far come from [**Making vowels in R (Part 1)**](https://joeystanley.com/blog/making-vowel-plots-in-r-part-1), and the code so far was adapted from this tutorial to work for our organized data. This tutorial gives a deeper explanation of the bits and pieces that make up the plots.
 
 #### Contour Plot
 Ellipses plots are a step in the right direction, especially with the transparent color fill. But [this linguist](http://christiandicanio.blogspot.com/2013/10/visualizing-vowel-spaces-in-r-from.html) argues that a better way of capturing vowel range is with **contour plots**, or 2D density plots.
