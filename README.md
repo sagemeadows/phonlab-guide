@@ -8,17 +8,17 @@ This document may look long and complicated, but don’t worry! A lot of it is i
 ## Table of Contents
 
 1. [**The Command Line**](#the-command-line)
-    Start here if you don't know what a command line is or how it works.
+    - Start here if you don't know what a command line is or how it works.
 2. [**Praat**](#praat)
-    How to download Praat and annotate sound files. Skim this part if you’ve already downloaded Praat. Skip it entirely if you’re already confident with using Praat’s annotation functions.
+    - How to download Praat and annotate sound files. Skim this part if you’ve already downloaded Praat. Skip it entirely if you’re already confident with using Praat’s annotation functions.
 3. [**Montreal Forced Aligner**](#montreal-forced-aligner)
-    What a forced aligner does and how to install and use MFA. You need to know how to use a command line to do this!
+    - What a forced aligner does and how to install and use MFA. You need to know how to use a command line to do this!
 4. [**FastTrack**](#fasttrack)
-    What FastTrack does, how to install it, and how to use it to extract vowel data.
+    - What FastTrack does, how to install it, and how to use it to extract vowel data.
 5. [**Organizing the Data**](#organizing-the-data)
-    How to convert the FastTrack output into something more usable.
+    - How to convert the FastTrack output into something more usable.
 6. [**Plotting the Data**](#plotting-the-data)
-    Using R to plot voices and vowels.
+    - Using R to plot voices and vowels.
 
 ## The Command Line
 ### What is a command line, and why is it useful?
@@ -876,15 +876,15 @@ If you have questions about Python itself, there are plenty of tutorials on the 
 
 #### Data organization template
 1. Make sure you have Jupyter notebook
-    If you don’t have it, install it
+    - If you don’t have it, install it
         1. `pip install jupyterlab`
         2. `pip install notebook`
 2. Make sure you have the Python software `pandas`
-    If you don’t have it, install it
+    - If you don’t have it, install it
         1. `pip install pandas`
 3. [Download the data organization template here](https://drive.google.com/file/d/1-MKcAjN-Lg-KKEF_1s1qZgxpln3LM17O/view?usp=sharing)
 4. Open Jupyter notebook
-    1. Go to command line and enter jupyter notebook
+    1. Go to command line and enter `jupyter notebook`
     2. In the browser interface, navigate to wherever the downloaded file is and click on it
 5. Follow template instructions
 
@@ -895,7 +895,7 @@ If you’re not picky about how your organized data looks and you don’t really
 2. Open your command line
 3. Run the script
 
-The structure of the command to run the script looks like this, with optional parts in parentheses:
+The structure of the command to run the script looks like this, with optional parts in parentheses (remove the parentheses if you use them):
 
 `python3 path_to_script/organize.py path_to_output_directory_1/processed_data/aggregated_data.csv (path_to_output_directory_2/processed_data/aggregated_data.csv...) (export (path_to_destination_for_organized_data/))`
 
@@ -1345,3 +1345,5 @@ In addition, contour plots sometimes seem to just ignore some of your vowels, fo
 The current code for plots like these is here:
 
 `ggplot(data, aes(x = f2_mean, y = f1_mean)) + geom_density_2d(aes(color = label)) + scale_y_reverse() + scale_x_reverse()`
+
+## ???
