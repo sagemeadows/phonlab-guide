@@ -113,6 +113,7 @@ You can also install software from the command line with a package manager. A pa
 If you’re on a Mac, you need to install a package manager before you can easily download things from the command line.
 
 One option is [Homebrew](https://brew.sh/), which you can install by pasting this into your command line:
+\
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 You can also find the script above at on their [homepage](https://brew.sh/). Other installation options are [here](https://docs.brew.sh/Installation).
@@ -365,9 +366,11 @@ pip is a Python package-management system that connects to an online repository 
 In addition to installing MFA, you also have to download a **pretrained acoustic model** and a **pronunciation dictionary** in the language of your speaker(s) in order for the alignment to work.
 
 To download the English pretrained acoustic model, run this command:
+\
 `mfa download acoustic english`
 
 To download the English pronunciation dictionary, run this command:
+\
 `mfa download dictionary english`
 
 You can find the acoustic models and dictionaries for all the languages MFA currently has available [here](https://montreal-forced-aligner.readthedocs.io/en/latest/pretrained_models.html#pretrained-models).
@@ -401,8 +404,11 @@ Say I want to align the `brown-fox.wav` file from the Praat section.
 1. First, I create a folder called `brown-fox_input` that contains `brown-fox.wav` and `brown-fox.TextGrid`
 2. Next, I create an empty folder called `brown-fox_output`
 3. Then I go to the command line and use the following mfa align command:
+\
     `mfa align College/phonlab/Tests/brown-fox_input/ Documents/MFA/pretrained_models/dictionary/english.dict Documents/MFA/pretrained_models/acoustic/english.zip College/phonlab/Tests/brown-fox_output/`
+    \
     which spits out this:
+    \
     ```
     All required kaldi binaries were found!
     /home/user/Documents/MFA/brown-fox_input/align.log
@@ -488,7 +494,7 @@ Once you have a folder of these individual sound files, FastTrack can go through
     4. **Make sure that the box next to "Stress is marked on vowels" is checked!**
     ![fasttrack-3](https://lh3.googleusercontent.com/pw/AM-JKLXYz7IIu8g81uQVWkQiN0PU--JpOjFQMlT7xsrneFPb8GDppSubWQSdXKDEBnzVRAoKOI0mgItMKFD51GQvVbKbgyYmmJyErxIsE2HAUV3bDyEZWP0QKb0bpBD4rY31A1BkN1lEMxA2vF4_V9uvqJs7=w536-h751-no?authuser=0)
 
-3. Press **Ok**
+3. Press "Ok"
 
 4. Now when you check your output file, you should find that these three things have been added:
     1. a folder called `sounds`, inside of which is multiple `.wav` files called `[sound file name]_0001.wav`, `[sound file name]_0002.wav`, etc.
@@ -498,7 +504,7 @@ Once you have a folder of these individual sound files, FastTrack can go through
 #### Tracking folder
 Now go back to **[Praat Objects]** and select either the sound file or the TextGrid.
 
-1. Click **Fast Track**, then **Track folder…**
+1. Click "Fast Track", then "Track folder…"
     ![fasttrack-4](https://lh3.googleusercontent.com/pw/AM-JKLVpApMVfL50eOeuJNPZlg83O8ODpaqz3PVOGiMQSdRMuVmGe-0L7i1kTwsBdhEvgNg67TDdxEmBD9K2-k6TZtKDxDk_xhUD39jg9_Syl99vS4hUEG5r5KpqvP6LpwomacSn7QpJDSoiDmSN6iUBdSaB=w532-h749-no?authuser=0)
 
 2. A pop-up called **[Pause: Set Parameters]** will appear.
@@ -510,7 +516,9 @@ Now go back to **[Praat Objects]** and select either the sound file or the TextG
     ![fasttrack-5](https://lh3.googleusercontent.com/pw/AM-JKLV7EW6t6MepUaH_91IuMk7fOVhZtVDhBF-Ceef_xBzcmjhwpxEGD0_GsK0vrlXm_e7fo5mK-1graU40pW7cjXxc4zxt7l7aACgquRZ2Ptde7J_CtYHuMqmfPz1BK11Q1_LSCylhPEA3q0Gm00DvGhYZ=w536-h736-no?authuser=0)
 
 3. Press "Ok".
+\
     As FastTrack runs and creates pictures, **[Praat Picture]** will pop-up. Even if you uncheck both images boxes, at the end FastTrack plots the vowels for you, so there will be at least three images.
+    \
     ![fasttrack-6](https://lh3.googleusercontent.com/pw/AM-JKLUAC_CfQzDFNJzrqaYcQyBe4aJfoVxSfLBpw2Z-MzUsDl1NLl7qgcvbhy1nFmBe0kj7Ek36Y7_kEFqG1ifwfy-TnFTIGS5ld9BPUowCRwZc8kWOGRAUa91cXs_z72hT-DrTatGcNuBXg5MfkEqYs3Uw=w553-h902-no?authuser=0)
 
 4. Now when you check your output folder, you should see the following added things:
@@ -595,9 +603,9 @@ Once you open the file, it should look something like this:
 
 The rest of the columns are the formant measurements. FastTrack by default measures the formants of a vowel at five evently spaced points along the duration (called "temporal bins"), so there are five measurements of each formant.
 
-The first number after 'f' is the formant number, i.e. whether it's F1, F2, F3, or F4. The second number is which temporal bin the measurement belongs to, i.e. whether it's the first, second, third, fourth, or fifth measurement along the vowel duration.
+The first number after `f` is the formant number, i.e. whether it's F1, F2, F3, or F4. The second number is which temporal bin the measurement belongs to, i.e. whether it's the first, second, third, fourth, or fifth measurement along the vowel duration.
 
-So 'f12' is the second measurement of the first formant, and 'f21' is the first measurement of the second formant.
+So `f12` is the second measurement of the first formant, and `f21` is the first measurement of the second formant.
 
 ##### Combining multiple `aggregated_data.csv`s
 If you have multiple related sound files that you've fed through FastTrack and you want one big data file with all of them, you can import another `aggregated_data.csv` and append it to the current sheet.
@@ -617,11 +625,11 @@ Now, when working with your data, there may be times when you want to refer to a
 
 Right now the extracted-from sound file is entangled with the extracted sound files in the column 'file', but we can split that into two columns to make it easier on us.
 
-Insert a column to the right of 'file'. You can name it 'file' as well, or 'speaker', or 'subject', or anything really.
+Insert a column to the right of `file`. You can name it `file` as well, or `speaker`, or `subject`, or anything really.
 
 ![spreadsheet-6](https://lh3.googleusercontent.com/pw/AM-JKLVrHYslDtqWtUMokIIl73p1a1A4-h-c3B0p_xnQ0pmIFoyo5IN9iH_um679aSXRcMi3Jm6cPa3OHYivh4BHvw11PK78Exk-vExkI1MwJQGuzdBnYEE2d4zFaD9-Op1jF7LeGD2Rwt9iKytKqOrySrM4=w1856-h898-no?authuser=0)
 
-Write the file name (the part that comes before the underscore in 'file') in the first row of that file series.
+Write the file name (the part that comes before the underscore in `file`) in the first row of that file series.
 
 ![spreadsheet-7](https://lh3.googleusercontent.com/pw/AM-JKLVBmQ089HFiSrbKVXM4VydmGBWr9tHsHYnoEz4f_kv4djs-6jIpK3vI3mYBpvmb7IPsWQxnTi4OFQ1eldGvBhdXvVLnGdOIJU-B1jo2VWB1nfxPfzla0926m8kTElWA4m4cyqHkgvzN9Xdr23Or2y88=w1855-h897-no?authuser=0)
 
@@ -631,34 +639,35 @@ Select one of the names, then click and hold on the square at the bottom right c
 ![spreadsheet-9](https://lh3.googleusercontent.com/pw/AM-JKLUDXC3T7TbtTEdZNaYrmntLDCcvmPF7mJN-0EBRq2Znlx-_fn6I29nv95cuAFPvEcsgi5ytQsY4US7XmrpWnkvhuE7i4DzySTMjp9XTY_ML6XcukcHIYgQNxfvWWTpYuckaInnmYrnSUyFSLJ9HiS7a=w1855-h897-no?authuser=0)
 ![spreadsheet-10](https://lh3.googleusercontent.com/pw/AM-JKLVaC5HfwxLThBZZ04xiIFSeBYZx8dvfWBohxpz8rIwbbRQJJihURFdacf__cYXmkrnHTetFPNv9UbqZ2DzGN_jKpX3PGVwgTMpT7JFsL99ODhrAXTpZYGHYld_Z1UIWWKhnKZMCrT3QPQUZqkKKcH9d=w1855-h898-no?authuser=0)
 
-Delete the first 'file' column.
+Delete the first `file` column.
 
 ![spreadsheet-11](https://lh3.googleusercontent.com/pw/AM-JKLXLtRCOBvXFXKY7vgeZMnleSQ-fVzFpf9Igc6BZgbR3WBGr3y9ofEKv3qyJjp2MltSff87GRnTGKJAymo8DL53wQRVWlN5Accrf2XKCWGzJs8m8GY46r11TH2UzE-0PU9z5ufvMqOPBVAPIaHf22bTZ=w1854-h897-no?authuser=0)
 
-If you want a number counter for the sound files, you can move the 'number' column over by clicking and dragging it into place and use that.
+If you want a number counter for the sound files, you can move the `number` column over by clicking and dragging it into place and use that.
 
 ![spreadsheet-12](https://lh3.googleusercontent.com/pw/AM-JKLWJebclrcfkS8T6TGg64wqzf0--a2AKcxqRNDafYfeOJp7f5vCeI0vlJIcMCa56Gq_E-S_Otzvv6uZ7jSoC7EJviOQehs0V2ewJvehF9hGFmy2pKiCt91b5o61MTQ6PMq0x2Qd79uR4HJd4BUhTNWSI=w1857-h894-no?authuser=0)
 
-At this point, since 'group' and 'color' really only have to do with FastTrack's automatic vowel plotting and 'cutoff' isn't important to the vowels themselves (only to FastTrack's processing of the vowels), you can hide those columns or delete them. Select the columns and right-click on them to see your options.
+At this point, since `group` and `color` really only have to do with FastTrack's automatic vowel plotting and `cutoff` isn't important to the vowels themselves (only to FastTrack's processing of the vowels), you can hide those columns or delete them. Select the columns and right-click on them to see your options.
 
 ![spreadsheet-13](https://lh3.googleusercontent.com/pw/AM-JKLWQS9KT3GKR_AE2AFsa2WDjBEuZ8_jeXz7rw4oKcMIUUdcxUVjKW0qo8CbqK4d9746lhQYFYXDgHKIQiDR53vBTBd-F5Lgo9n-MNYA1aYO_QRRfTwq9EiaQ16TMhj_2J27RdyEDd_2Erle5C1wPw7Bn=w1857-h895-no?authuser=0)
 
 #### Average vowel formants
 To find a vowel's average formants, take the mean of the middle three temporal bins. In other words,
 
-- the average of F1 is the average of 'f12', 'f13', and 'f14'
-- the average of F2 is the average of 'f22', 'f23', and 'f24'
-- the average of F3 is the average of 'f32', 'f33', and 'f34'
-- the average of F4 is the average of 'f42', 'f43', and 'f44'
+- the average of F1 is the average of `f12`, `f13`, and `f14`
+- the average of F2 is the average of `f22`, `f23`, and `f24`
+- the average of F3 is the average of `f32`, `f33`, and `f34`
+- the average of F4 is the average of `f42`, `f43`, and `f44`
 
 First, make four new columns at the end of the spreadsheet for the mean formants.
 
 ![spreadsheet-14](https://lh3.googleusercontent.com/pw/AM-JKLX5KKLkhu5vJgZ5_6V6_Ug4BLqOypx9tQ6UnNQf_yT-NgqTqYgM30wgAXzcgDuMVDnSU8UfcwMkNEFuMUqaS3t-lh3GqkbCgg3LEzD90vI3Sni5gmQcpOGxVGUbLCMDpw1lUsgVhkakrfCX4-B71Y0Z=w1857-h895-no?authuser=0)
 
-In the first empty cell of the 'f1_mean' column (or whatever you named it), insert the following formula:
+In the first empty cell of the `f1_mean` column (or whatever you named it), insert the following formula:
+\
 `=AVERAGE(M2,Q2,U2)`
 
-Note that if you chose to delete 'color', 'group', and 'cutoff', or if you added any additional columns, you may have to change the formula to whatever columns 'f12', ‘f13', and 'f14' are in.
+Note that if you chose to delete `color`, `group`, and `cutoff`, or if you added any additional columns, you may have to change the formula to whatever columns `f12`, `f13`, and `f14` are in.
 
 ![spreadsheet-15](https://lh3.googleusercontent.com/pw/AM-JKLWLekjhUHaC_ZK8xtgYUIBpituP-pp66G3pICP-pEevlEFJm5xOcNzn0cChsTvg93XHDKJdvtPC1KPpOoXUBx3JGfqy6wKYJ3w0KORUDLqsBfvI7bZQC7-zfaSFID_i7UVsw5LyVOzk0BL6KMCU4ooq=w1920-h897-no?authuser=0)
 
@@ -668,17 +677,20 @@ Now either drag the formula down the column or, if Google Sheets gives you an au
 
 Repeat process for the other three mean columns, changing the formula to get the right columns.
 
-For 'f2_mean':
+For `f2_mean`:
+\
 `=AVERAGE(N2,R2,V2)`
 
 ![spreadsheet-17](https://lh3.googleusercontent.com/pw/AM-JKLXlgNqGq82bNWuARcA3ubLLXOEW0bCdaMy8QMMINnVOCQmEaVzPHdaBY88Ph4vPyd1VqjpNl-Cl38oEeVLlJCzyxoTkTCP4t0UzKMkR4Dt62cDy_-1Pu0WKOAQuzn9OGp3FG-j97KGtnSEjs7RL0Osf=w1855-h894-no?authuser=0)
 
-For 'f3_mean':
+For `f3_mean`:
+\
 `=AVERAGE(O2,S2,W2)`
 
 ![spreadsheet-18](https://lh3.googleusercontent.com/pw/AM-JKLUJxzULmQp6jo9JGCkdo-zyp3xiHYJPPG2kbNjLMPL6fbpudk9KA6OCSn0SkNso72RABMuGDIQ5WRKbUuniYr-P5s9pGplgzGVTy1M88po-fe-6XMjEhMv9tkvVGnALZNu_EL6AAeJPenhxhNCLzvve=w1855-h895-no?authuser=0)
 
-For 'f4_mean':
+For `f4_mean`:
+\
 `=AVERAGE(P2,T2,X2)`
 
 ![spreadsheet-19](https://lh3.googleusercontent.com/pw/AM-JKLVFsqj0XG_SJn1KYZhjSnkRvTYDEJWaD258ZET_p7JZfUwnEKcr8fNE-pjhohbdxi9PF_Trt_UXEgRd5bvjKlMB5AROxec2Trzvq-51LLQViljZ2nHOcIGKPB0ob3KAyFClVHyY47HZxz-8a6BK_iXf=w1855-h894-no?authuser=0)
@@ -698,7 +710,7 @@ Since men tend to have longer vocal tracts and women tend to have shorter vocal 
 ##### Equations
 The vocal tract is essentially a tube that is closed at one end—the glottis—when voiced sounds such as vowels are being produced. Because of this, we can use the resonance equation for a tube closed at one end:
 
-![equation1](https://bit.ly/2VokBoo)
+![equation1](https://lh3.googleusercontent.com/pw/AM-JKLVKlBuhmH5NdJ7mKJ_LPcDYg-ONokf6pbybMy4D-vj1y5Nrv1-EMiCTlipW8dVNCxiyXIAbedMGzDFXgpw4qINbYaTKnKKE_EZh6jAWlXZfUL7zi9quaW3VYEGAJ9GeBXwDr4x2pho9OONIThNeD7zL=w97-h38-no?authuser=0)
 
 In this formula,
 
