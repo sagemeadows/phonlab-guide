@@ -721,7 +721,7 @@ In this formula,
 
 Solving for length, we get:
 
-![equation2](https://bit.ly/3jSAugc)
+![equation2](https://lh3.googleusercontent.com/pw/AM-JKLWFKHQqTepeti2aJVSn47HYA5rE7jmG4C_6NnQKk1geld9nev592AjTMGV0F0uP96yyHcRUh0pQAZfk05D4xnbZFyJ6WnEx5FWUuK83ev_lC6Pg4y6WBMzkY8PL31bvmGgqjDWOjScyt2lm2fnXKqU-=w90-h44-no?authuser=0)
 
 This is the equation we use to calculate vocal tract length.
 
@@ -738,41 +738,41 @@ First, create four new columns.
 
 To find the length of F1 (which will be part of the average length), use this formula and drag it down the 'length_f1' column or select the autofill option.
 
-`=(35000)/(4*AC2)` (you may have to change the column name depending on where your 'f1_mean' is)
+`=(35000)/(4*AC2)` (you may have to change the column name depending on where your `f1_mean` is)
 
 This formula comes from simplifying the vocal tract equation for n=1.
 \
-![equation-f1](https://bit.ly/2WOA6H0)
+![equation-f1](https://lh3.googleusercontent.com/pw/AM-JKLW6AJWS9MORZhfA7RTRb4F7p3o_u9P8dUSC-HtajCxvtHfB__ehccnNM7qqYaVBJCkn_ITGWGkNjMB26h5kX8rST-li0ZbhSAcls00Szk9kTLl1Q_wSACpfbUUBo_Wkoi-83CYFkrHhs7llC51rm2Ei=w380-h44-no?authuser=0)
 
 ![spreadsheet-23](https://lh3.googleusercontent.com/pw/AM-JKLUe49ovju70my7oaVL5_Oz-KHGGZy4Yi6Ie0zXyA0tnJ3TH9dIhSe_kny1E1GQ4qgiRc7acAWSEnqR-F0fdLSKf3fOVmJtAmV7oIWUCi1hfvo0lNWTjM4pxO8QFH5jmAhsnPDOR1jqp-dA1c2V0TRPl=w1855-h894-no?authuser=0)
 
 To find the length of F2:
 \
-`=(3*35000)/(4*AD2)` (you may have to change the column name depending on where your 'f2_mean' is)
+`=(3*35000)/(4*AD2)` (you may have to change the column name depending on where your `f2_mean` is)
 \
-![equation-f2](https://bit.ly/3zFklAt)
+![equation-f2](https://lh3.googleusercontent.com/pw/AM-JKLWuLqPFNvacMdwH2ADJsRm3ilenDD1oD4evPh6t5gVRAApDPZqL-0ceuSQHdjGE39ppp7_kRID7h9gV20GlgImUpcsETAyY4HT2Nh8bPrupNfl8SzAA7GWoFmybtvPUXnTyLiBWDRjBL2yjv-LHUKCL=w322-h44-no?authuser=0)
 
 ![spreadsheet-24](https://lh3.googleusercontent.com/pw/AM-JKLV1ijctkoUhWQQ3_iG1SNFTFEId5FwPR9YvGTaszFbjtpkc9D0jFlC7Tp0qvYn8ib6y2id7703ntgd2AuUOagurri41aJc7Z3DsJhlacRTJyiHuc8z-ALgLguU6Jn-08UMcmkcojeuSxCTbxMr34M-A=w1855-h895-no?authuser=0)
 
 To find the length of F3:
 \
-`=(5*35000)/(4*AE2)` (you may have to change the column name depending on where your 'f3_mean' is)
+`=(5*35000)/(4*AE2)` (you may have to change the column name depending on where your `f3_mean` is)
 \
-![equation-f3](https://bit.ly/3mWym97)
+![equation-f3](https://lh3.googleusercontent.com/pw/AM-JKLWZbqhbzvK0GXPnYInP3vCvtu-uAks_MVQSeSU9IGqwUEleFdRkkNwqcEPPlluomlM3oheakqV4QyAYKNSBirq3jCTg3b6iOrRhW0qVKvM8gZmnX1vzu2f3krwRJne7kmOsLfi09DjPCoQ_eflcYyUf=w321-h44-no?authuser=0)
 
 ![spreadsheet-25](https://lh3.googleusercontent.com/pw/AM-JKLWP_rC-Wm35MC9x5rxlEvxqZvEaToLDxUwoavr-Z6QnHpIsHzpq9ihmMLwKNwXQA26G_HI9DPDXkOyS_UQuDyZ6qjJKiNmaBOr0N096mPmgEFRKriIvOD21fOrb0S1i29FL-jekuaxo2b9vxfKQYhbe=w1855-h897-no?authuser=0)
 
 To find the length of F4:
 \
-`=(7*35000)/(4*AF2)` (you may have to change the column name depending on where your 'f4_mean' is)
+`=(7*35000)/(4*AF2)` (you may have to change the column name depending on where your `f4_mean` is)
 \
-![equation-f4](https://bit.ly/3mXZuoy)
+![equation-f4](https://lh3.googleusercontent.com/pw/AM-JKLXWnL4MhTTCxaE3Y6fKOn59PVMo7j2pm0GINhNHZ1N_RFbjYzzri-6ItfoktlUbIgcbJvrXIVtw1JAJ70lb-Hhsb-T66f9Rk6jKDKl2t2mVW9G7NyM5rze2sEduKG4suLS2XpqROwKBFnse0-w582gx=w322-h44-no?authuser=0)
 
 ![spreadsheet-26](https://lh3.googleusercontent.com/pw/AM-JKLU0aVxcCTz_wdiEjtrM7To4odgWZ4MYNXTrYHFfLTpUBsmey6RAKdPgDZYx5owFNSFqQaNXn3O40WQkPhdoYsNbBU9OoZl8I_hL-gx9v2mA5h5MR2efCkWwynCxiVFocpGrY71HGOpsY9aRvcJ6Acu7=w1855-h894-no?authuser=0)
 
 To get the average:
 \
-`=AVERAGE(AG2,AH2,AI2,AJ2)` (you may have to change the column names depending on where your 'length_f1', 'length_f2', 'length_f3', and 'length_f4' columns are)
+`=AVERAGE(AG2,AH2,AI2,AJ2)` (you may have to change the column names depending on where your `length_f1`, `length_f2`, `length_f3`, and `length_f4` columns are)
 
 ![spreadsheet-27](https://lh3.googleusercontent.com/pw/AM-JKLXlC5iMfjjvg6vXj_6l16iOS3fsRij0r6lTtJc-6roZ044zrcU_CDnUhoNbvcAexI7fTZR0jNgiXV5JTRKDFvi-kEepjshnlmrYu1dC3klm7BFqzTYlH3uyeoipAbXCU9VPIbu8CZWC2zFYCKWGpvbg=w1855-h895-no?authuser=0)
 
@@ -1438,7 +1438,7 @@ In this command, the `.md` file is an existing Markdown file that you want to co
 For more information on the “markdown” command, run this command: `man markdown`
 
 **WARNINGS**
-- The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between <code>```three backticks```</code>, all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
+- The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between tripple backticks <code>```</code>, all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
 - In addition, since multi-line code blocks are not recognized, underscores in those code blocks will be converted into `<em>` and `</em>`, which will also have to be fixed by hand.
 - If you don't put a line of space between a regular paragraph and a list in Markdown, the list will not be converted into a list in HTML.
 - LaTeX equations in Markdown, sandwiched between `$dollar signs$`, are not converted into HTML equations.
