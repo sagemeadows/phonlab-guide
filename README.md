@@ -1438,7 +1438,7 @@ In this command, the `.md` file is an existing Markdown file that you want to co
 For more information on the “markdown” command, run this command: `man markdown`
 
 **WARNINGS**
-- The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between <code>```</code>tripple backticks<code>```</code>, all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
+- The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between tripple backticks (i.e. betweeen two of these: <code>```</code>), all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
 - In addition, since multi-line code blocks are not recognized, underscores in those code blocks will be converted into `<em>` and `</em>`, which will also have to be fixed by hand.
 - If you don't put a line of space between a regular paragraph and a list in Markdown, the list will not be converted into a list in HTML.
 - LaTeX equations in Markdown, sandwiched between `$dollar signs$`, are not converted into HTML equations.
