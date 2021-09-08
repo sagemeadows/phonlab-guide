@@ -101,8 +101,9 @@ In the Mac command line, the path the terminal shows you by default only shows y
 There are lots of different commands, but for using the software in this guide, you only really need to know a few specific commands that come with softwares when you download them.
 
 **If you want more details about command lines:**
+\
 Here's [a guide to the Mac OS X Terminal](https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start).
-
+\
 Here's [a guide to the Linux command line](https://www.linuxjournal.com/content/linux-command-line-interface-introduction-guide).
 
 ### Installing software through the command line
@@ -697,18 +698,18 @@ Since men tend to have longer vocal tracts and women tend to have shorter vocal 
 ##### Equations
 The vocal tract is essentially a tube that is closed at one end—the glottis—when voiced sounds such as vowels are being produced. Because of this, we can use the resonance equation for a tube closed at one end:
 
-$f_{n} = \frac{(2n-1)c}{4L}$
+![equation1](https://bit.ly/2VokBoo)
 
 In this formula,
 
-- $f$ = frequency (Hz)
-- $n$ = resonance number (e.g. 1=first formant, 2=second formant, etc.)
-- $c$ = speed of sound (35,000<sup>cm/s</sup> in warm moist air)
-- $L$ = vocal tract length (cm)
+- *f* = frequency (Hz)
+- *n* = resonance number (e.g. 1=first formant, 2=second formant, etc.)
+- *c* = speed of sound (35,000<sup>cm/s</sup> in warm moist air)
+- *L* = vocal tract length (cm)
 
 Solving for length, we get:
 
-$L = \frac{(2n-1)c}{4 \times f_{n}}$
+![equation2](https://bit.ly/3jSAugc)
 
 This is the equation we use to calculate vocal tract length.
 
@@ -728,29 +729,37 @@ To find the length of F1 (which will be part of the average length), use this fo
 `=(35000)/(4*AC2)` (you may have to change the column name depending on where your 'f1_mean' is)
 
 This formula comes from simplifying the vocal tract equation for n=1.
-$L = \frac{((2 \times 1)-1)35000}{4 \times f_{1}} = \frac{(2-1)35000}{4 \times f_{1}} = \frac{1 \times 35000}{4 \times f_{1}} = \frac{35000}{4 \times f_{1}}$
+\
+![equation-f1](https://bit.ly/2WOA6H0)
 
 ![spreadsheet-23](https://lh3.googleusercontent.com/pw/AM-JKLUe49ovju70my7oaVL5_Oz-KHGGZy4Yi6Ie0zXyA0tnJ3TH9dIhSe_kny1E1GQ4qgiRc7acAWSEnqR-F0fdLSKf3fOVmJtAmV7oIWUCi1hfvo0lNWTjM4pxO8QFH5jmAhsnPDOR1jqp-dA1c2V0TRPl=w1855-h894-no?authuser=0)
 
 To find the length of F2:
+\
 `=(3*35000)/(4*AD2)` (you may have to change the column name depending on where your 'f2_mean' is)
-$L = \frac{((2 \times 2)-1)35000}{4 \times f_{2}} = \frac{(4-1)35000}{4 \times f_{2}} = \frac{3 \times 35000}{4 \times f_{2}}$
+\
+![equation-f2](https://bit.ly/3zFklAt)
 
 ![spreadsheet-24](https://lh3.googleusercontent.com/pw/AM-JKLV1ijctkoUhWQQ3_iG1SNFTFEId5FwPR9YvGTaszFbjtpkc9D0jFlC7Tp0qvYn8ib6y2id7703ntgd2AuUOagurri41aJc7Z3DsJhlacRTJyiHuc8z-ALgLguU6Jn-08UMcmkcojeuSxCTbxMr34M-A=w1855-h895-no?authuser=0)
 
 To find the length of F3:
+\
 `=(5*35000)/(4*AE2)` (you may have to change the column name depending on where your 'f3_mean' is)
-$L = \frac{((2 \times 3)-1)35000}{4 \times f_{3}} = \frac{(6-1)35000}{4 \times f_{3}} = \frac{5 \times 35000}{4 \times f_{3}}$
+\
+![equation-f3](https://bit.ly/3mWym97)
 
 ![spreadsheet-25](https://lh3.googleusercontent.com/pw/AM-JKLWP_rC-Wm35MC9x5rxlEvxqZvEaToLDxUwoavr-Z6QnHpIsHzpq9ihmMLwKNwXQA26G_HI9DPDXkOyS_UQuDyZ6qjJKiNmaBOr0N096mPmgEFRKriIvOD21fOrb0S1i29FL-jekuaxo2b9vxfKQYhbe=w1855-h897-no?authuser=0)
 
 To find the length of F4:
+\
 `=(7*35000)/(4*AF2)` (you may have to change the column name depending on where your 'f4_mean' is)
-$L = \frac{((2 \times 4)-1)35000}{4 \times f_{4}} = \frac{(8-1)35000}{4 \times f_{4}} = \frac{7 \times 35000}{4 \times f_{4}}$
+\
+![equation-f4](https://bit.ly/3mXZuoy)
 
 ![spreadsheet-26](https://lh3.googleusercontent.com/pw/AM-JKLU0aVxcCTz_wdiEjtrM7To4odgWZ4MYNXTrYHFfLTpUBsmey6RAKdPgDZYx5owFNSFqQaNXn3O40WQkPhdoYsNbBU9OoZl8I_hL-gx9v2mA5h5MR2efCkWwynCxiVFocpGrY71HGOpsY9aRvcJ6Acu7=w1855-h894-no?authuser=0)
 
 To get the average:
+\
 `=AVERAGE(AG2,AH2,AI2,AJ2)` (you may have to change the column names depending on where your 'length_f1', 'length_f2', 'length_f3', and 'length_f4' columns are)
 
 ![spreadsheet-27](https://lh3.googleusercontent.com/pw/AM-JKLXlC5iMfjjvg6vXj_6l16iOS3fsRij0r6lTtJc-6roZ044zrcU_CDnUhoNbvcAexI7fTZR0jNgiXV5JTRKDFvi-kEepjshnlmrYu1dC3klm7BFqzTYlH3uyeoipAbXCU9VPIbu8CZWC2zFYCKWGpvbg=w1855-h895-no?authuser=0)
@@ -930,7 +939,7 @@ This command contains, in order:
 If you don't want to save a file for the organized data and just want a preview, you can leave out the `export` part of the command. For example, if I do this from my home directory (the default when you open the command line), it looks like this:
 
 ```
-user@computer:~$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv
+$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv
 
 Organizing 2 data files...
 
@@ -967,7 +976,7 @@ Organized data was not saved. To save and export data, repeat command (up-arrow 
 If I actually do want to save a copy of the organized data, I add `export`.
 
 ```
-user@computer:~$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv export
+$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv export
 
 Organizing 2 data files...
 
@@ -1003,7 +1012,7 @@ File 'organized_data.csv' has been created in current directory.
 
 Now I have a file called `organized_data.csv` in my home directory. But I'd rather have that file closer to the aggregated data files that it came from. So I can add a destination for that new file.
 
-```user@computer:~/$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv export College/phonlab/Tests/
+```$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv export College/phonlab/Tests/
 
 Organizing 2 data files...
 
@@ -1072,6 +1081,7 @@ If you’re on Windows, you can download R with the links and instructions [here
 
 ##### Linux
 If you’re on Linux, you can download R from the command line with the following command:
+\
 `sudo apt-get install r-base`
 
 #### Installing ggplot2
@@ -1094,7 +1104,7 @@ There are two main ways to open and use R.
 You can open R in your command line with the command `R` (make sure it’s uppercase!).
 
 ```
-user@computer:~$ R
+$ R
 
 R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
 Copyright (C) 2020 The R Foundation for Statistical Computing
@@ -1140,7 +1150,8 @@ These determine how values are rendered graphically.
 E.g. points, lines, boxplots, bars, etc.
 
 Here’s an example of what ggplot code looks like:
-ggplot(dataframe, aes(x = xvar, y = yvar)) + geom_boxplot()
+\
+`ggplot(dataframe, aes(x = xvar, y = yvar)) + geom_boxplot()`
 
 There’s more tools you can use in ggplot2, but for now, just get a feel for the structure of ggplot code.
 
@@ -1414,8 +1425,7 @@ In this command, the `.md` file is an existing Markdown file that you want to co
 
 For more information on the “markdown” command, run this command: `man markdown`
 
-#### Converting HTML to PDF
-**WARNING**
+**WARNINGS**
 - The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between <code>```three backticks```</code>, all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
 - In addition, since multi-line code blocks are not recognized, underscores in those code blocks will be converted into `<em>` and `</em>`, which will also have to be fixed by hand.
 - If you don't put a line of space between a regular paragraph and a list in Markdown, the list will not be converted into a list in HTML.
@@ -1425,6 +1435,7 @@ For more information on the “markdown” command, run this command: `man markd
   - [Interactive cheatsheet](https://htmlcheatsheet.com/)
   - [Static website cheatsheet](http://www.simplehtmlguide.com/cheatsheet.php)
 
+#### Converting HTML to PDF
 Once you have a `.html` file, you can convert it to a PDF in a few different ways. There are a couple command line options, namely [`wkhtmltopdf`](https://wkhtmltopdf.org/) and [`weasyprint`](https://doc.courtbouillon.org/weasyprint/stable/index.html), but for this task I think it's actually easier to just use one of the websites available for HTML to PDF conversion.
 
 - [Sejda](https://www.sejda.com/html-to-pdf)
