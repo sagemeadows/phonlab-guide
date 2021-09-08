@@ -1,5 +1,5 @@
 # A Guide to Phonetic Analysis Software
-*Last updated: 7 Sept 2021*
+*Last updated: 8 Sept 2021*
 
 This guide explains how to use a number of softwares for phonetic analysis and provides step-by-step instructions on how to get vowel data out of audio files.
 
@@ -20,7 +20,7 @@ This document may look long and complicated, but don’t worry! A lot of it is i
 6. [**Plotting the Data**](#plotting-the-data)
     - Using R to plot voices and vowels.
 7. [**Add to the Guide**](#add-to-the-guide)
-    - How to edit Markdown, and how to use GitHub to update this guide.
+    - Editing Markdown, converting to HTML and PDF, and how to use GitHub to update this guide.
 
 ## The Command Line
 ### What is a command line, and why is it useful?
@@ -805,7 +805,9 @@ Jupyter notebook is useful because it can be easier to use Python in a notebook 
 You can [download the software for Jupyter notebook](https://jupyter.org/install) with two pip install commands:
 
 `pip install jupyterlab`
+\
 followed by
+\
 `pip install notebook`
 
 #### Using Jupyter Notebook
@@ -1196,8 +1198,10 @@ Although there are some differences between the graphs, notice that in both case
 #### R Code
 First, open R and copy and paste the following two commands.
 
+```
 library(ggplot2)
 library(dplyr)
+```
 
 The first library lets you use ggplot commands. The second library lets you use the [pipe function `%>%`](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) and the [`summarise`](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/summarise) function.
 
@@ -1438,10 +1442,10 @@ In this command, the `.md` file is an existing Markdown file that you want to co
 For more information on the “markdown” command, run this command: `man markdown`
 
 **WARNINGS**
-- The Markdown to HTML conversion doesn't recognize that multiple lines of code, sandwiched between tripple backticks (i.e. betweeen two of these: <code>```</code>), all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you have to edit the HTML by hand.
-- In addition, since multi-line code blocks are not recognized, underscores in those code blocks will be converted into `<em>` and `</em>`, which will also have to be fixed by hand.
+- The Markdown to HTML conversion doesn't always recognize that multiple lines of code, sandwiched between tripple backticks (i.e. betweeen two of these: <code>```</code>), all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you may have to edit the HTML by hand.
+- Underscores in folder or file names are sometimes converted to `<em>` and `</em>` in the HTML, which will also have to be fixed by hand.
 - If you don't put a line of space between a regular paragraph and a list in Markdown, the list will not be converted into a list in HTML.
-- LaTeX equations in Markdown, sandwiched between `$dollar signs$`, are not converted into HTML equations.
+- LaTeX equations in Markdown, sandwiched between `$dollar signs$`, are not converted into HTML equations. Your best bet with equations is to get an image of the equation to embed in the HTML.
 - Here are some HTML cheatsheets:
   - [PDF cheatsheet](https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf)
   - [Interactive cheatsheet](https://htmlcheatsheet.com/)
