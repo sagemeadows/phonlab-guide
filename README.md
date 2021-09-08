@@ -20,7 +20,7 @@ This document may look long and complicated, but don’t worry! A lot of it is i
 6. [**Plotting the Data**](#plotting-the-data)
     - Using R to plot voices and vowels.
 7. [**Add to the Guide**](#add-to-the-guide)
-    - Editing Markdown, converting to HTML and PDF, and how to use GitHub to update this guide.
+    - How to edit Markdown, and how to use GitHub to update this guide.
 
 ## The Command Line
 ### What is a command line, and why is it useful?
@@ -1416,50 +1416,6 @@ This guide is stored in a public repository on [GitHub](https://github.com/), wh
 If you want to modify this guide, you can [clone the repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) or [fork the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Cloning a repository downloads a copy of all the files onto your own computer, which you can then edit. In contrast, forking a repository creates a copy of the repository on your GitHub account, but not on your local computer. (Of course, after forking a repository you can always clone it onto your computer afterwards.)
 
 Once you're done editing, if you want to put your changes into the original repository (as opposed to your forked one), you can open a [pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). If it's accepted, your changes will be merged into the original repository.
-
-### Converting to PDF
-A convenient part of Markdown is that images are very easy to embed as long as they're on the internet somewhere and you can provide a url to them. But urls on the internet can change or disappear. So if an image's url disappears or changes, you won't be able to see the image anymore.
-
-If you're worried about your images disappearing, one workaround is to create a PDF. PDFs are self-contained, so an image in a PDF won't change even if the image's location on the internet changes.
-
-Unfortunately, converting Markdown directly to a PDF doesn't really work. (Even if you can get a PDF, that has the images, it won't have links embedded in the text, or the links won't be clickable.)
-
-However, it's a lot easier to convert Markdown to HTML, and HTML to PDF.
-
-(Why not just write the guide in HTML to begin with? Because Markdown is a lot more human-readable in the editing process than HTML.)
-
-#### Converting Markdown to HTML
-To convert Markdown into HTML, you can use a command line tool called [`markdown`](https://daringfireball.net/projects/markdown/).
-
-You can install `markdown` from the command line with your package manager (e.g. `sudo apt-get install markdown` on Linux or `brew install markdown` if you have Homebrew).
-
-Once you have markdown installed, the command for converting Markdown to HTML looks like this:
-
-`markdown file.md > file.html`
-
-In this command, the `.md` file is an existing Markdown file that you want to convert to a HTML file, and the `.html` file that will be created as the output. Replace the names as needed.
-
-For more information on the “markdown” command, run this command: `man markdown`
-
-**WARNINGS**
-- The Markdown to HTML conversion doesn't always recognize that multiple lines of code, sandwiched between tripple backticks (i.e. betweeen two of these: <code>```</code>), all belong in one code block. If you want to preserve multi-line code blocks in hte PDF, you may have to edit the HTML by hand.
-- Underscores in folder or file names are sometimes converted to `<em>` and `</em>` in the HTML, which will also have to be fixed by hand.
-- If you don't put a line of space between a regular paragraph and a list in Markdown, the list will not be converted into a list in HTML.
-- LaTeX equations in Markdown, sandwiched between `$dollar signs$`, are not converted into HTML equations. Your best bet with equations is to get an image of the equation to embed in the HTML.
-- Here are some HTML cheatsheets:
-  - [PDF cheatsheet](https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf)
-  - [Interactive cheatsheet](https://htmlcheatsheet.com/)
-  - [Static website cheatsheet](http://www.simplehtmlguide.com/cheatsheet.php)
-
-#### Converting HTML to PDF
-Once you have a `.html` file, you can convert it to a PDF in a few different ways. There are a couple command line options, namely [`wkhtmltopdf`](https://wkhtmltopdf.org/) and [`weasyprint`](https://doc.courtbouillon.org/weasyprint/stable/index.html), but for this task I think it's actually easier to just use one of the websites available for HTML to PDF conversion.
-
-- [Sejda](https://www.sejda.com/html-to-pdf)
-- [Pdfcrowd](https://pdfcrowd.com/)
-- [HTML to PDF](https://html2pdf.com/)
-- [Soda PDF](https://www.sodapdf.com/html-to-pdf/)
-
-These websites will convert the `.html` file to a `.pdf` file, which you can then download. And that's it!
 
 ## License
 This guide is licensed on GitHub under the Creative Commons CC0 Public Domain Dedication. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. [See here for more details.](https://creativecommons.org/publicdomain/zero/1.0/)
