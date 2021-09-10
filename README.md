@@ -1167,7 +1167,7 @@ Here’s an example of what ggplot code looks like:
 \
 `ggplot(dataframe, aes(x = xvar, y = yvar)) + geom_boxplot()`
 
-There’s more tools you can use in ggplot2, but for now, just get a feel for the structure of ggplot code.
+There’s a lot of tools you can use in ggplot2, and a lot of other things you can add on. [**Here’s a reference of all the geoms and other things you can add to the plot**](https://ggplot2.tidyverse.org/reference/).
 
 #### Alternative plotting methods
 You can also make plots in Python with [matplotlib](https://matplotlib.org/stable/index.html) ([installation instructions here](https://matplotlib.org/stable/users/installing.html)).
@@ -1240,7 +1240,16 @@ The code for these plots is here:
 
 `ggplot(means, aes(x = mean_length_mean, y = mean_f0, label = subject)) + geom_label() + ggtitle("Voice Plot") + xlab("Mean Vocal Tract Length (cm)") + ylab("Mean F0 (Hz)") + theme_classic()`
 
-As you get more comfortable with R and ggplot2, you can experiment with other styles of plotting voices.
+You can add a regression line with `geom_smooth(method='lm')`. Although, it looks better if you have more voices.
+
+![voices-5](https://lh3.googleusercontent.com/pw/AM-JKLU3viBJFIk_gpbrqyxK8bDYyAqijjMTORLBXU-IHDZykArYc4yA9lrOzb8qTWN8-mVe-Y40IqqpxTuPfZ5v2I9HzTJXw0BRuf3-Ut_iZUw0wuJMKjxzp8Jtc0Dj6ZHJjBndx6aBHRmYd_iuoxiYwLEg=w523-h463-no?authuser=0)
+![voices-6](https://lh3.googleusercontent.com/pw/AM-JKLW99OI5clY72fERS7FpL9IEzlS8neJIP4PskRajGFz-U6pdCmko5o6eOmL9-LeV2gu4rPCQYv9WfJt9w32KcDSgi_r5iDXbkK2YP1HK8LbxD278KeXmmsOf7e6ZIbQD05FNM1_Vv7KhnMbELJN4ah1e=w523-h463-no?authuser=0)
+
+`ggplot(means, aes(x = mean_length_f4, y = mean_f0)) + geom_smooth(method='lm') + geom_text(label = means$subject) + ggtitle("Voice Plot") + xlab("Mean Vocal Tract Length of F4 (cm)") + ylab("Mean F0 (Hz)") + theme_bw()`
+
+`ggplot(means, aes(x = mean_length_mean, y = mean_f0)) + geom_smooth(method='lm') + geom_text(label = means$subject) + ggtitle("Voice Plot") + xlab("Mean Vocal Tract Length (cm)") + ylab("Mean F0 (Hz)") + theme_bw()`
+
+As you get more comfortable with R and ggplot2, you can experiment with other styles of plotting voices and other add-ons.
 
 ### Plotting Vowels
 F1 is inversely related to vowel height (i.e. the lower the F1, the higher the vowel) and F2 is directly related to vowel frontness (i.e. the higher the F2, the fronter the vowel). When plotting vowels, we want to emulate the physical vowel space the same way that the IPA vowel chat and similar vowel charts mirror the space within the oral cavity.
