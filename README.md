@@ -20,7 +20,9 @@ This document may look long and complicated, but don’t worry! A lot of it is i
 6. [**Plotting the Data**](#plotting-the-data)
     - Using R to plot voices and vowels.
 7. [**Add to the Guide**](#add-to-the-guide)
-    - How to edit Markdown, and how to use GitHub to update this guide.
+    - How to edit Markdown, and how to use GitHub to update this guide. If you're already a GitHub expert, feel free to skip this part!
+8. [**License**](#license)
+    - Creative Commons CC0 license details.
 
 ## The Command Line
 ### What is a command line, and why is it useful?
@@ -1412,19 +1414,36 @@ This guide is written in [Markdown](https://www.markdownguide.org/getting-starte
 [**Here again is a helpful cheatsheet for markdown syntax**](https://www.markdownguide.org/basic-syntax/)
 
 #### Text Editors for Markdown
-
-When it comes to editing Markdown, you don't want to use Microsoft Word or LibreOffice or anything similar. Those softwares are a bad choice for Markdown because they're designed to show you what the text would look like on the page as you edit it, whereas Markdown in its editing mode looks different than when it's compiled. So if you're using Microsoft Word or something similar, the pages and the buttons aren't really doing anything for you.
+When it comes to editing Markdown, you don't want to use Microsoft Word or LibreOffice or anything similar. Those softwares are a bad choice for Markdown because they're designed to show you what the text would look like on the page as you edit it, whereas Markdown in its editing mode looks different than when it's compiled. So if you're using Microsoft Word or something similar, the pages and the buttons you click to format things aren't really doing anything for you.
 
 Instead, you want a text editor that highlights markup syntax so that it's even easier to read. There are a lot of free, open source options you can download: [here's a list](https://kinsta.com/blog/best-text-editors/).
 
-I personally prefer [Atom](https://atom.io/), which can be installed on [Mac](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-mac), [Windows](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-windows), or [Linux](https://flight-manual.atom.io/getting-started/sections/installing-atom/). But any editor for the list should work.
+I personally prefer [Atom](https://atom.io/), which can be installed on [Mac](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-mac), [Windows](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-windows), or [Linux](https://flight-manual.atom.io/getting-started/sections/installing-atom/). But any editor from the list should work.
 
 ### GitHub
-This guide is stored in a public repository on [GitHub](https://github.com/), which makes it easy to for other people to modify. GitHub is basically a service for hosting projects in a way that allows for easy collaboration. A repository is just a project and all the files that make it up.
+This guide is stored in a public repository on [GitHub](https://en.wikipedia.org/wiki/GitHub), which makes it easy to for other people to modify. GitHub is basically a service for hosting projects in a way that allows for easy collaboration. A repository is just a project and all the files that make it up.
 
+GitHub is actually made up of two parts: the website [GitHub](https://github.com/), which is a basically just a user interface, and an open source [version control system](https://www.geeksforgeeks.org/version-control-systems/) (VCS) called [Git](https://docs.github.com/en/get-started/quickstart/set-up-git) which GitHub accesses.
+
+In other words, **you can use Git without GitHub**, but **you can't use GitHub without using Git**.
+
+Git is a software, so you have to install it. GitHub is a website service, so if you want to use it, you have to make an account for it.
+
+#### Installing Git
+You can either [install Git on your command line](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), or, if you don't want to use the command line, you can install [GitHub Desktop](https://desktop.github.com/).
+
+Once you have Git installed, you need to set [your username in Git](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git) and your [commit email address](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address#setting-your-commit-email-address-in-git).
+
+#### Creating a GitHub account
+You can create a GitHub account [here](https://github.com/join). Use the same username and email that you used for Git.
+
+#### Authenticating with GitHub from Git
+Since Git is on your local computer and GitHub is on a server that many people access, there are certain security measures in place to make sure that you're really you when you upload things to GitHub or download things from GitHub. That's why you have to create a way to [authenticate with GitHub](https://docs.github.com/en/get-started/quickstart/set-up-git#next-steps-authenticating-with-github-from-git).
+
+#### Modifying the guide on GitHub
 If you want to modify this guide, you can [clone the repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) or [fork the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Cloning a repository downloads a copy of all the files onto your own computer, which you can then edit. In contrast, forking a repository creates a copy of the repository on your GitHub account, but not on your local computer. (Of course, after forking a repository you can always clone it onto your computer afterwards.)
 
 Once you're done editing, if you want to put your changes into the original repository (as opposed to your forked one), you can open a [pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). If it's accepted, your changes will be merged into the original repository.
 
 ## License
-This guide is licensed on GitHub under the Creative Commons CC0 Public Domain Dedication. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. [See here for more details.](https://creativecommons.org/publicdomain/zero/1.0/)
+This guide is licensed on GitHub under the Creative Commons CC0 Public Domain Dedication. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. See [the Creative Commons website](https://creativecommons.org/publicdomain/zero/1.0/) or [the phonlab-guide LICENSE file](https://github.com/sagemeadows/phonlab-guide/blob/main/LICENSE) for more details.
