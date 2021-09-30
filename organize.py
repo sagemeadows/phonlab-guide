@@ -101,7 +101,7 @@ print(data)
 message_export_true = "\nFinished!\nCreated 'organized_data.csv' in current directory.\n"
 message_export_elsewhere = "\nFinished!\nCreated 'organized_data.csv' in {}\n"
 message_export_false = "\nFinished!\nOrganized data was not saved.\n To save data, repeat command (up-arrow key) and add `-s`\
-                        To save data in different directory, add `-s -e [path_to_output_directory]/`"
+\n To save data in different directory, add `-s -e [path_to_output_directory]/`\n"
 
 ## export option
 if options.save_data == True:
