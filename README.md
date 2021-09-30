@@ -1,5 +1,5 @@
 # A Guide to Phonetic Analysis Software
-*Last updated: 8 Sept 2021*
+*Last updated: 30 Sept 2021*
 
 This guide explains how to use a number of softwares for phonetic analysis and provides step-by-step instructions on how to get vowel data out of audio files.
 
