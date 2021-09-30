@@ -940,7 +940,7 @@ If you’re not picky about how your organized data looks and you don’t really
 
 The structure of the command to run the script looks like this, with optional parts in parentheses (remove the parentheses if you use them):
 
-`python3 path_to_script/organize.py path_to_output_directory_1/processed_data/aggregated_data.csv (path_to_output_directory_2/processed_data/aggregated_data.csv...) (export (path_to_destination_for_organized_data/))`
+`python3 path_to_script/organize.py path_to_output_directory_1/processed_data/aggregated_data.csv (path_to_output_directory_2/processed_data/aggregated_data.csv...) (-l) (-s (-e path_to_destination_for_organized_data/))`
 
 This command contains, in order:
 
@@ -949,122 +949,172 @@ This command contains, in order:
 - the path from your current location to the `aggregated_data.csv` file you want to organize
 - OPTOINAL: the path from your current location to another `aggregated_data.csv` file you want to append
     - You can add as many `aggregated_data.csv` files as you want
-- OPTIONAL: `export`, which will make the script save a .csv file on your computer with the organized data
-    - OPTIONAL: the path from your current location to wherever you want the organized data file to go
+- OPTIONAL: `-l` or `--lite`, which will get rid of the time-spaced FastTrack formant measures after getting the average measures to make the data easier to read
+- OPTIONAL: `-s` or `--save`, which will make the script save a `.csv` file on your computer with the organized data
+    - OPTIONAL: `-e [path_to_output_directory]/` or `--elsewhere [path_to_output_directory]/`, which will save the organized data in the directory of your choice (if you don't use `-e`, the file will be saved in your current directory)
 
-If you don't want to save a file for the organized data and just want a preview, you can leave out the `export` part of the command. For example, if I do this from my home directory (the default when you open the command line), it looks like this:
+To learn more about the script's options, navigate to wherever you stored `organize.py` and type `python3 organize.py -h` or `python3 organize.py --help`.
 
 ```
-$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv
+$ python3 organize.py --help
+Usage: organize.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -s, --save            choose to save organized data file
+  -e output_directory/, --elsewhere=output_directory/
+                        save organized data file in specific location:
+                        path_to_output_directory/
+  -l, --lite            delete time-spaced formant values after mean formants
+                        are calculated
+
+```
+
+If you run the script without any of the options, the output looks like this:
+
+```
+$ python3 organize.py /home/sage/College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv /home/sage/College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv
 
 Organizing 2 data files...
 
-         file sound     f0  duration  ... f3_mean  f4_mean  length_f4  length_mean
-0   brown-fox  0001  239.4     0.100  ...  2727.0   4042.0      15.15        16.64
-1   brown-fox  0002  312.0     0.070  ...  2907.0   4316.0      14.19        13.76
-2   brown-fox  0003  244.9     0.140  ...  2653.0   3614.0      16.95        15.04
-3   brown-fox  0004  217.6     0.168  ...  2913.0   4224.0      14.50        15.57
-4   brown-fox  0005  223.6     0.060  ...  2648.0   3645.0      16.80        15.80
-5   brown-fox  0006  231.0     0.090  ...  2650.0   3920.0      15.62        17.17
-6   brown-fox  0007  233.4     0.048  ...  2917.0   4378.0      13.99        15.31
-7   brown-fox  0008  222.6     0.060  ...  3279.0   4330.0      14.15        16.62
-8   brown-fox  0009  220.0     0.138  ...  3048.0   4392.0      13.95        14.35
-9   brown-fox  0010  227.5     0.140  ...  3033.0   4444.0      13.78        14.63
-10  brown-fox  0011  292.8     0.230  ...  3045.0   4260.0      14.38        15.84
-11    red-fox  0001  290.9     0.080  ...  2958.0   4402.0      13.91        13.79
-12    red-fox  0002  246.3     0.120  ...  3006.0   4398.0      13.93        13.09
-13    red-fox  0003  179.0     0.180  ...  3034.0   4206.0      14.56        15.49
-14    red-fox  0004  232.0     0.038  ...  2730.0   3678.0      16.65        16.40
-15    red-fox  0005  246.8     0.190  ...  2711.0   3843.0      15.94        17.54
-16    red-fox  0006  240.9     0.160  ...  2366.0   4121.0      14.86        16.34
-17    red-fox  0007  234.5     0.038  ...  3195.0   4237.0      14.46        17.20
-18    red-fox  0008  236.2     0.120  ...  3065.0   4403.0      13.91        14.32
-19    red-fox  0009  247.0     0.068  ...  3090.0   4446.0      13.78        15.04
-20    red-fox  0010  217.8     0.120  ...  2603.0   3613.0      16.95        15.22
-21    red-fox  0011  100.6     0.198  ...  2867.0   3926.0      15.60        16.41
+         file sound     f0  duration label  f11   f21   f31   f41  f12   f22   f32   f42  ...   f24   f34   f44  f15   f25   f35   f45  f1_mean  f2_mean  f3_mean  f4_mean  length_f4  length_mean
+0   brown-fox  0001  239.4     0.100    AH  505  1758  2876  4119  486  1781  2710  3990  ...  1820  2730  4033  363  1812  2923  4147    414.0   1847.0   2727.0   4042.0      15.15        16.64
+1   brown-fox  0002  312.0     0.070    IH  605  1876  2928  4234  612  2003  2869  4332  ...  2360  2934  4316  604  2579  2922  4489    627.0   2216.0   2907.0   4316.0      14.19        13.76
+2   brown-fox  0003  244.9     0.140    AW  747  1621  2329  3733  822  1574  2382  3595  ...  1695  2951  3581  534  1347  2832  3498    810.0   1651.0   2653.0   3614.0      16.95        15.04
+3   brown-fox  0004  217.6     0.168    AA  791  1163  2832  4228  822  1181  2968  4273  ...  1186  2832  4137  665  1251  2738  4138    831.0   1180.0   2913.0   4224.0      14.50        15.57
+4   brown-fox  0005  223.6     0.060    AH  561  2113  2724  3874  650  1819  2691  3758  ...  1404  2611  3539  543  1247  2623  3525    661.0   1576.0   2648.0   3645.0      16.80        15.80
+5   brown-fox  0006  231.0     0.090    OW  546  1548  2863  4085  538  1348  2743  3892  ...  1289  2587  3939  492  1153  2507  3993    527.0   1316.0   2650.0   3920.0      15.62        17.17
+6   brown-fox  0007  233.4     0.048    ER  456  1561  2484  4133  499  1826  2680  4254  ...  1837  3082  4539  443  2028  3082  4613    480.0   1871.0   2917.0   4378.0      13.99        15.31
+7   brown-fox  0008  222.6     0.060    AH  559  2289  3161  4496  579  1223  3266  4361  ...  1027  3315  4282  479   986  3437  4343    570.0   1110.0   3279.0   4330.0      14.15        16.62
+8   brown-fox  0009  220.0     0.138    EY  599  2218  3155  4383  492  2556  3091  4325  ...  2678  2975  4502  433  2342  2950  4516    457.0   2634.0   3048.0   4392.0      13.95        14.35
+9   brown-fox  0010  227.5     0.140    IY  433  2517  3046  4408  428  2766  3073  4392  ...  2710  2951  4467  353  1660  2870  4142    421.0   2756.0   3033.0   4444.0      13.78        14.63
+10  brown-fox  0011  292.8     0.230    AO  805  1317  2825  3989  774  1017  2929  4271  ...  1182  3113  4212  780  1138  3054  4091    815.0   1100.0   3045.0   4260.0      14.38        15.84
+11    red-fox  0001  290.9     0.080    IH  559  1821  2725  4297  566  2129  2943  4391  ...  2646  3005  4444  383  2492  2870  4515    565.0   2390.0   2958.0   4402.0      13.91        13.79
+12    red-fox  0002  246.3     0.120    EH  656  2269  2468  4228  725  2353  2931  4353  ...  2017  3090  4479  595  2011  3109  4462    732.0   2199.0   3006.0   4398.0      13.93        13.09
+13    red-fox  0003  179.0     0.180    AA  761  1174  3054  4331  806  1196  3083  4352  ...  1183  2976  4152  788  1288  2748  4045    812.0   1183.0   3034.0   4206.0      14.56        15.49
+14    red-fox  0004  232.0     0.038    AH  670  1437  2661  3742  670  1446  2685  3711  ...  1285  2772  3650  574  1278  2748  3632    645.0   1355.0   2730.0   3678.0      16.65        16.40
+15    red-fox  0005  246.8     0.190    OW  535  1596  2811  3822  535  1219  2658  3816  ...  1222  2696  3920  502  1224  2449  3922    525.0   1226.0   2711.0   3843.0      15.94        17.54
+16    red-fox  0006  240.9     0.160    ER  546  1405  2422  4105  541  1689  2321  4132  ...  1731  2440  4108  467  1974  2948  4435    526.0   1706.0   2366.0   4121.0      14.86        16.34
+17    red-fox  0007  234.5     0.038    AH  461  1209  3140  4272  499  1219  3166  4261  ...  1123  3221  4226  473  1117  3224  4196    483.0   1165.0   3195.0   4237.0      14.46        17.20
+18    red-fox  0008  236.2     0.120    EY  500  1834  3170  4359  475  2444  3120  4404  ...  2729  2980  4430  431  2434  2983  4437    463.0   2578.0   3065.0   4403.0      13.91        14.32
+19    red-fox  0009  247.0     0.068    IY  417  2546  3095  4548  407  2631  3165  4507  ...  2502  3022  4353  388  2518  3562  4389    395.0   2611.0   3090.0   4446.0      13.78        15.04
+20    red-fox  0010  217.8     0.120    AW  854  1785  2285  3610  934  1671  2475  3636  ...  1540  2705  3598  712  1482  2715  3412    869.0   1539.0   2603.0   3613.0      16.95        15.22
+21    red-fox  0011  100.6     0.198    AO  773  1363  2844  3817  771  1170  2777  3883  ...  1118  2934  3953  767  1180  2980  4023    745.0   1140.0   2867.0   3926.0      15.60        16.41
 
 [22 rows x 31 columns]
 
 Finished!
-Organized data was not saved. To save and export data, repeat command (up-arrow key) and add 'export'.
+Organized data was not saved.
+ To save data, repeat command (up-arrow key) and add `-s`
+ To save data in different directory, add `-s -e [path_to_output_directory]/`
 ```
 
-If I actually do want to save a copy of the organized data, I add `export`.
+If you don't think you'll be needing the time-spaced formants later on and want the data to be a bit easier to read, you can add `-l` or `--lite`, which gives you this:
 
 ```
-$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv export
+$ python3 organize.py /home/sage/College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv /home/sage/College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv -l
 
 Organizing 2 data files...
 
-         file sound     f0  duration  ... f3_mean  f4_mean  length_f4  length_mean
-0   brown-fox  0001  239.4     0.100  ...  2727.0   4042.0      15.15        16.64
-1   brown-fox  0002  312.0     0.070  ...  2907.0   4316.0      14.19        13.76
-2   brown-fox  0003  244.9     0.140  ...  2653.0   3614.0      16.95        15.04
-3   brown-fox  0004  217.6     0.168  ...  2913.0   4224.0      14.50        15.57
-4   brown-fox  0005  223.6     0.060  ...  2648.0   3645.0      16.80        15.80
-5   brown-fox  0006  231.0     0.090  ...  2650.0   3920.0      15.62        17.17
-6   brown-fox  0007  233.4     0.048  ...  2917.0   4378.0      13.99        15.31
-7   brown-fox  0008  222.6     0.060  ...  3279.0   4330.0      14.15        16.62
-8   brown-fox  0009  220.0     0.138  ...  3048.0   4392.0      13.95        14.35
-9   brown-fox  0010  227.5     0.140  ...  3033.0   4444.0      13.78        14.63
-10  brown-fox  0011  292.8     0.230  ...  3045.0   4260.0      14.38        15.84
-11    red-fox  0001  290.9     0.080  ...  2958.0   4402.0      13.91        13.79
-12    red-fox  0002  246.3     0.120  ...  3006.0   4398.0      13.93        13.09
-13    red-fox  0003  179.0     0.180  ...  3034.0   4206.0      14.56        15.49
-14    red-fox  0004  232.0     0.038  ...  2730.0   3678.0      16.65        16.40
-15    red-fox  0005  246.8     0.190  ...  2711.0   3843.0      15.94        17.54
-16    red-fox  0006  240.9     0.160  ...  2366.0   4121.0      14.86        16.34
-17    red-fox  0007  234.5     0.038  ...  3195.0   4237.0      14.46        17.20
-18    red-fox  0008  236.2     0.120  ...  3065.0   4403.0      13.91        14.32
-19    red-fox  0009  247.0     0.068  ...  3090.0   4446.0      13.78        15.04
-20    red-fox  0010  217.8     0.120  ...  2603.0   3613.0      16.95        15.22
-21    red-fox  0011  100.6     0.198  ...  2867.0   3926.0      15.60        16.41
-
-[22 rows x 31 columns]
+         file sound     f0  duration label  f1_mean  f2_mean  f3_mean  f4_mean  length_f4  length_mean
+0   brown-fox  0001  239.4     0.100    AH    414.0   1847.0   2727.0   4042.0      15.15        16.64
+1   brown-fox  0002  312.0     0.070    IH    627.0   2216.0   2907.0   4316.0      14.19        13.76
+2   brown-fox  0003  244.9     0.140    AW    810.0   1651.0   2653.0   3614.0      16.95        15.04
+3   brown-fox  0004  217.6     0.168    AA    831.0   1180.0   2913.0   4224.0      14.50        15.57
+4   brown-fox  0005  223.6     0.060    AH    661.0   1576.0   2648.0   3645.0      16.80        15.80
+5   brown-fox  0006  231.0     0.090    OW    527.0   1316.0   2650.0   3920.0      15.62        17.17
+6   brown-fox  0007  233.4     0.048    ER    480.0   1871.0   2917.0   4378.0      13.99        15.31
+7   brown-fox  0008  222.6     0.060    AH    570.0   1110.0   3279.0   4330.0      14.15        16.62
+8   brown-fox  0009  220.0     0.138    EY    457.0   2634.0   3048.0   4392.0      13.95        14.35
+9   brown-fox  0010  227.5     0.140    IY    421.0   2756.0   3033.0   4444.0      13.78        14.63
+10  brown-fox  0011  292.8     0.230    AO    815.0   1100.0   3045.0   4260.0      14.38        15.84
+11    red-fox  0001  290.9     0.080    IH    565.0   2390.0   2958.0   4402.0      13.91        13.79
+12    red-fox  0002  246.3     0.120    EH    732.0   2199.0   3006.0   4398.0      13.93        13.09
+13    red-fox  0003  179.0     0.180    AA    812.0   1183.0   3034.0   4206.0      14.56        15.49
+14    red-fox  0004  232.0     0.038    AH    645.0   1355.0   2730.0   3678.0      16.65        16.40
+15    red-fox  0005  246.8     0.190    OW    525.0   1226.0   2711.0   3843.0      15.94        17.54
+16    red-fox  0006  240.9     0.160    ER    526.0   1706.0   2366.0   4121.0      14.86        16.34
+17    red-fox  0007  234.5     0.038    AH    483.0   1165.0   3195.0   4237.0      14.46        17.20
+18    red-fox  0008  236.2     0.120    EY    463.0   2578.0   3065.0   4403.0      13.91        14.32
+19    red-fox  0009  247.0     0.068    IY    395.0   2611.0   3090.0   4446.0      13.78        15.04
+20    red-fox  0010  217.8     0.120    AW    869.0   1539.0   2603.0   3613.0      16.95        15.22
+21    red-fox  0011  100.6     0.198    AO    745.0   1140.0   2867.0   3926.0      15.60        16.41
 
 Finished!
-File 'organized_data.csv' has been created in current directory.
+Organized data was not saved.
+ To save data, repeat command (up-arrow key) and add `-s`
+ To save data in different directory, add `-s -e [path_to_output_directory]/`
 ```
 
-Now I have a file called `organized_data.csv` in my home directory. But I'd rather have that file closer to the aggregated data files that it came from. So I can add a destination for that new file.
+If you like the way the way the preview looks, you can repeat the command and add `-s` or `--save`.
 
-```$ python3 College/phonlab/scripts/organize.py College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv export College/phonlab/Tests/
+```
+$ python3 organize.py /home/sage/College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv /home/sage/College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv -l -s
 
 Organizing 2 data files...
 
-         file sound     f0  duration  ... f3_mean  f4_mean  length_f4  length_mean
-0   brown-fox  0001  239.4     0.100  ...  2727.0   4042.0      15.15        16.64
-1   brown-fox  0002  312.0     0.070  ...  2907.0   4316.0      14.19        13.76
-2   brown-fox  0003  244.9     0.140  ...  2653.0   3614.0      16.95        15.04
-3   brown-fox  0004  217.6     0.168  ...  2913.0   4224.0      14.50        15.57
-4   brown-fox  0005  223.6     0.060  ...  2648.0   3645.0      16.80        15.80
-5   brown-fox  0006  231.0     0.090  ...  2650.0   3920.0      15.62        17.17
-6   brown-fox  0007  233.4     0.048  ...  2917.0   4378.0      13.99        15.31
-7   brown-fox  0008  222.6     0.060  ...  3279.0   4330.0      14.15        16.62
-8   brown-fox  0009  220.0     0.138  ...  3048.0   4392.0      13.95        14.35
-9   brown-fox  0010  227.5     0.140  ...  3033.0   4444.0      13.78        14.63
-10  brown-fox  0011  292.8     0.230  ...  3045.0   4260.0      14.38        15.84
-11    red-fox  0001  290.9     0.080  ...  2958.0   4402.0      13.91        13.79
-12    red-fox  0002  246.3     0.120  ...  3006.0   4398.0      13.93        13.09
-13    red-fox  0003  179.0     0.180  ...  3034.0   4206.0      14.56        15.49
-14    red-fox  0004  232.0     0.038  ...  2730.0   3678.0      16.65        16.40
-15    red-fox  0005  246.8     0.190  ...  2711.0   3843.0      15.94        17.54
-16    red-fox  0006  240.9     0.160  ...  2366.0   4121.0      14.86        16.34
-17    red-fox  0007  234.5     0.038  ...  3195.0   4237.0      14.46        17.20
-18    red-fox  0008  236.2     0.120  ...  3065.0   4403.0      13.91        14.32
-19    red-fox  0009  247.0     0.068  ...  3090.0   4446.0      13.78        15.04
-20    red-fox  0010  217.8     0.120  ...  2603.0   3613.0      16.95        15.22
-21    red-fox  0011  100.6     0.198  ...  2867.0   3926.0      15.60        16.41
-
-[22 rows x 31 columns]
+         file sound     f0  duration label  f1_mean  f2_mean  f3_mean  f4_mean  length_f4  length_mean
+0   brown-fox  0001  239.4     0.100    AH    414.0   1847.0   2727.0   4042.0      15.15        16.64
+1   brown-fox  0002  312.0     0.070    IH    627.0   2216.0   2907.0   4316.0      14.19        13.76
+2   brown-fox  0003  244.9     0.140    AW    810.0   1651.0   2653.0   3614.0      16.95        15.04
+3   brown-fox  0004  217.6     0.168    AA    831.0   1180.0   2913.0   4224.0      14.50        15.57
+4   brown-fox  0005  223.6     0.060    AH    661.0   1576.0   2648.0   3645.0      16.80        15.80
+5   brown-fox  0006  231.0     0.090    OW    527.0   1316.0   2650.0   3920.0      15.62        17.17
+6   brown-fox  0007  233.4     0.048    ER    480.0   1871.0   2917.0   4378.0      13.99        15.31
+7   brown-fox  0008  222.6     0.060    AH    570.0   1110.0   3279.0   4330.0      14.15        16.62
+8   brown-fox  0009  220.0     0.138    EY    457.0   2634.0   3048.0   4392.0      13.95        14.35
+9   brown-fox  0010  227.5     0.140    IY    421.0   2756.0   3033.0   4444.0      13.78        14.63
+10  brown-fox  0011  292.8     0.230    AO    815.0   1100.0   3045.0   4260.0      14.38        15.84
+11    red-fox  0001  290.9     0.080    IH    565.0   2390.0   2958.0   4402.0      13.91        13.79
+12    red-fox  0002  246.3     0.120    EH    732.0   2199.0   3006.0   4398.0      13.93        13.09
+13    red-fox  0003  179.0     0.180    AA    812.0   1183.0   3034.0   4206.0      14.56        15.49
+14    red-fox  0004  232.0     0.038    AH    645.0   1355.0   2730.0   3678.0      16.65        16.40
+15    red-fox  0005  246.8     0.190    OW    525.0   1226.0   2711.0   3843.0      15.94        17.54
+16    red-fox  0006  240.9     0.160    ER    526.0   1706.0   2366.0   4121.0      14.86        16.34
+17    red-fox  0007  234.5     0.038    AH    483.0   1165.0   3195.0   4237.0      14.46        17.20
+18    red-fox  0008  236.2     0.120    EY    463.0   2578.0   3065.0   4403.0      13.91        14.32
+19    red-fox  0009  247.0     0.068    IY    395.0   2611.0   3090.0   4446.0      13.78        15.04
+20    red-fox  0010  217.8     0.120    AW    869.0   1539.0   2603.0   3613.0      16.95        15.22
+21    red-fox  0011  100.6     0.198    AO    745.0   1140.0   2867.0   3926.0      15.60        16.41
 
 Finished!
-File 'organized_data.csv' has been created in Tests/
+Created 'organized_data.csv' in current directory.
 ```
 
-If I wanted the paths I have to write to be shorter, I could change directories in the command line to the folder called `phonlab` that contains both `scripts` and `Tests`. Then the previous command could look like this:
+However, if you don't want the organized data file to end up in the same place as your `organize.py` file, you can add `-e`/`--elsewhere` followed by the path to where you want the organized data to go.
 
-`python3 scripts/organize.py Tests/brown-fox_output/processed_data/aggregated_data.csv Tests/test1_output/processed_data/aggregated_data.csv export Tests/`
+```
+$ python3 organize.py /home/sage/College/phonlab/Tests/brown-fox_output/processed_data/aggregated_data.csv /home/sage/College/phonlab/Tests/test1_output/processed_data/aggregated_data.csv -l -s -e /tmp/
+
+Organizing 2 data files...
+
+         file sound     f0  duration label  f1_mean  f2_mean  f3_mean  f4_mean  length_f4  length_mean
+0   brown-fox  0001  239.4     0.100    AH    414.0   1847.0   2727.0   4042.0      15.15        16.64
+1   brown-fox  0002  312.0     0.070    IH    627.0   2216.0   2907.0   4316.0      14.19        13.76
+2   brown-fox  0003  244.9     0.140    AW    810.0   1651.0   2653.0   3614.0      16.95        15.04
+3   brown-fox  0004  217.6     0.168    AA    831.0   1180.0   2913.0   4224.0      14.50        15.57
+4   brown-fox  0005  223.6     0.060    AH    661.0   1576.0   2648.0   3645.0      16.80        15.80
+5   brown-fox  0006  231.0     0.090    OW    527.0   1316.0   2650.0   3920.0      15.62        17.17
+6   brown-fox  0007  233.4     0.048    ER    480.0   1871.0   2917.0   4378.0      13.99        15.31
+7   brown-fox  0008  222.6     0.060    AH    570.0   1110.0   3279.0   4330.0      14.15        16.62
+8   brown-fox  0009  220.0     0.138    EY    457.0   2634.0   3048.0   4392.0      13.95        14.35
+9   brown-fox  0010  227.5     0.140    IY    421.0   2756.0   3033.0   4444.0      13.78        14.63
+10  brown-fox  0011  292.8     0.230    AO    815.0   1100.0   3045.0   4260.0      14.38        15.84
+11    red-fox  0001  290.9     0.080    IH    565.0   2390.0   2958.0   4402.0      13.91        13.79
+12    red-fox  0002  246.3     0.120    EH    732.0   2199.0   3006.0   4398.0      13.93        13.09
+13    red-fox  0003  179.0     0.180    AA    812.0   1183.0   3034.0   4206.0      14.56        15.49
+14    red-fox  0004  232.0     0.038    AH    645.0   1355.0   2730.0   3678.0      16.65        16.40
+15    red-fox  0005  246.8     0.190    OW    525.0   1226.0   2711.0   3843.0      15.94        17.54
+16    red-fox  0006  240.9     0.160    ER    526.0   1706.0   2366.0   4121.0      14.86        16.34
+17    red-fox  0007  234.5     0.038    AH    483.0   1165.0   3195.0   4237.0      14.46        17.20
+18    red-fox  0008  236.2     0.120    EY    463.0   2578.0   3065.0   4403.0      13.91        14.32
+19    red-fox  0009  247.0     0.068    IY    395.0   2611.0   3090.0   4446.0      13.78        15.04
+20    red-fox  0010  217.8     0.120    AW    869.0   1539.0   2603.0   3613.0      16.95        15.22
+21    red-fox  0011  100.6     0.198    AO    745.0   1140.0   2867.0   3926.0      15.60        16.41
+
+Finished!
+Created 'organized_data.csv' in /tmp/
+```
 
 As you can see, using this Python script doesn't really need any knowledge of Python. A basic understanding of the command line is all you need.
 
@@ -1370,7 +1420,6 @@ ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, label = label, color = labe
 ```
 
 >**Streamlining Tip:**
->\
 >```
 ># change list of speakers
 >speakers = ["20F", "22F", "50F", "50M", "76M"]`
@@ -1447,7 +1496,6 @@ means.speaker <- speaker_subset %>%
 ```
 
 >**Streamlining Tip:**
->\
 >```
 ># change list of speakers
 >speakers = ["20F", "22F", "50F", "50M", "76M"]`
@@ -1476,7 +1524,6 @@ ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, label = label, color = labe
 ```
 
 >**Streamlining Tip:**
->\
 >```
 ># change list of speakers
 >speakers = ["20F", "22F", "50F", "50M", "76M"]
@@ -1499,7 +1546,6 @@ But if you want to plot speakers means on the same plot, you have to put all the
 `means.all <- rbind(means.speaker1, means.speaker2, means.speaker3...)`
 
 >**Streamlining Tip:**
->\
 >```
 ># change list of speakers
 >speakers = ["20F", "22F", "50F", "50M", "76M"]`
@@ -1571,7 +1617,6 @@ ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, color = label, label = labe
 ```
 
 >**Streamlining Tip:**
->\
 >```
 ># change list of speakers
 >speakers = ["20F", "22F", "50F", "50M", "76M"]
@@ -1603,7 +1648,6 @@ ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, color = label, label = labe
 ```
 
 >**Streamlining Tip:**
->\
 >```
 ># change list of speakers
 >speakers = ["20F", "22F", "50F", "50M", "76M"]
