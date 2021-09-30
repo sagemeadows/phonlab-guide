@@ -1281,8 +1281,8 @@ Another important piece to set up is arranging so that the colors of adjacent vo
 
 ```
 data$label <- factor(data$label,
-                     levels = c("IY", "EH", "AW", "AO", "UH", "IH", "AE", "AH",
-                                "OY", "UW", "EY", "AY", "AA", "OW", "ER"))
+                     levels = c("IY", "EH", "AW", "UW", "AH", "IH", "AE", "UH",
+                                "OY", "AY", "EY", "ER", "AA", "OW", "AO"))
 ```
 
 If you don’t have all of these vowel, you might have to make some changes to the code above.
@@ -1291,7 +1291,6 @@ If you don’t have all of these vowel, you might have to make some changes to t
 A pretty typical vowel plot is just to plot every vowel. This will give you "clouds" of different vowels in different areas.
 
 ![vowel-plot-1](https://joeystanley.com/images/plots/vowel_plots_1/plot10.png)
-
 
 ```
 ggplot(data, aes(x = f2_mean, y = f1_mean, color = label)) +
@@ -1303,7 +1302,99 @@ ggplot(data, aes(x = f2_mean, y = f1_mean, color = label)) +
     theme_classic()
 ```
 
-A downside to this kind of plot is that it can be hard to read, because vowels are messy. This kind of plot gets especially hard to read when you have multiple speakers in the data.
+But really, looking between the legend and the plot to figure out which vowel is which is a pain. We can make it a bit better by cutting out the legend and making the vowels the points on the plot. Here's an example using the data from the [plotting voices section](#plotting-voices):
+
+![my-vowels-1](https://lh3.googleusercontent.com/pw/AM-JKLXaz8T5rd1xvHtuCmNVnNBiTyBskBE3CNoPI9BC4HUGGNTCHJZsQ7u1Y6mMe9Mg3wM_HeQKajXlZBPi7RkU3W6lDp1qudPFQ9K9djyLbniOocieDoRuDe-ajHH_PS62dJL4ezbZsHYYhPaudqhHBS8C=w923-h640-no?authuser=0)
+
+```
+ggplot(data, aes(x = f2_mean, y = f1_mean, color = label)) +
+    geom_text(label = data$label) +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") + labs(color = "Vowel") +
+    theme_classic() +
+    theme(legend.position="none")
+```
+
+However, a downside to cloud plots in general is that it can be hard to read, because vowels are messy. Cloud plots get especially hard to read when you have multiple speakers in the data, as in the examples above.
+
+To show the different speakers while keeping them on the same plot, you can set the color factor to be the speaker instead of the vowel.
+
+![my-vowels-2](https://lh3.googleusercontent.com/pw/AM-JKLVzRoq-3-hu2tPjc0LO2zLnAakzGV4jB2g2FARqraz6grP57FWHyD30TU2ognd2o3zHCHh23coFV2zY7qw1Q_3cxV9mYYbXzaA6MYK4a6roiMkOdDm3oUarCSItFtwXmBOFKgHV4h65eLdlIFpUQqsF=w1013-h704-no?authuser=0)
+
+```
+ggplot(data, aes(x = f2_mean, y = f1_mean, color = {file/subject/speaker})) +
+    geom_text(label = data$label) +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") + labs(color = "Speaker") +
+    theme_classic()
+```
+
+Unfortunately, this is super hard to read. Instead, we might want to separate the speakers out so each one gets their own graph. To do that, first we have to separate out the different speakers into subsets of the data.
+
+Making a subset looks like this, where `foo` is a variable name (could be anything), :
+\
+`foo <- subset(data, factor=="blah")`
+
+In this example, `foo` is a variable name (could be anything as long as it doesn't start with a number), `factor` is the name of a column in the data you're subsetting, and `blah` is a value that some rows in the data have for whatever column `factor` is.
+
+>**Streamlining Tip:**
+>\
+>If you have a lot of different speakers and don't want to keep writing out the subsets by hand, you can automate the process easily with a Python [*for*-loop](https://wiki.python.org/moin/ForLoop).
+>1. Open a Jupyter Notebook, or open Python in your command line with `python3`
+>2. Create a list of your speakers, e.g. `speakers = ["20F", "22F", "50F", "50M", "76M"]`
+>3. Create a template for the data subset command, with curly brackets where the changing text will be: `template = 'subset.{speaker} <- subset(data, file=="{speaker}"'`
+>4. Run this code:
+>```
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
+>    This will spit out a subset command for each speaker, e.g.:
+>```
+>subset.20F <- subset(data, file=="20F"
+>subset.22F <- subset(data, file=="22F"
+>subset.50F <- subset(data, file=="50F"
+>subset.50M <- subset(data, file=="50M"
+>subset.76M <- subset(data, file=="76M"
+>```
+>5. Copy the printed output and paste it into your R code.
+
+Now to get a plot of just one speaker, replace `subset_data` in the code below with the name of one of your data subsets.
+
+```
+ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, label = label, color = label)) +
+    geom_text() +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("[Insert Speaker Name] Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") + labs(color = "Vowel") +
+    theme_classic() +
+    theme(legend.position="none")
+```
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]`
+>
+>template = """
+>ggplot(subset.{speaker}, aes(x = f2_mean, y = f1_mean, label = label, color = label)) +
+>    geom_text() +
+>    scale_x_reverse() + scale_y_reverse() +
+>    ggtitle("{speaker} Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") + labs(color = "Vowel") +
+>    theme_classic() +
+>    theme(legend.position="none")
+>"""
+>
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
+
+![my-vowels-f20-1](https://lh3.googleusercontent.com/pw/AM-JKLVNcnoIkB1TGUilcBFKCbY6HT-DGV9sBsTu6K3ajIq9MX9FGHIvVoUFFHPc6KqINTnY56LkvQ8Y7yTluIkvvU31OT3Xrvn6ckgJ-txqwu1vx8aCvhzdWI-XLBu9dJzs9hr3dXDohnlgfTh66zBuMzfG=w1014-h702-no?authuser=0)
+![my-vowels-f22-1](https://lh3.googleusercontent.com/pw/AM-JKLVx33Hh7lk3LETM9fseJi9e9d2cSDWlHZcOyjjqsujK3NY9_8hu_-UdD5CR_c8dHiRmrqDBr9LNrD0xOi5MFZOF9hQRo_v4ZDBiT2AvkziBlRuOcPlD4maZ_MkDGhJG_9oTFsWYs-IXkQ-DYnD5KTwT=w1016-h702-no?authuser=0)
+![my-vowels-f50-1](https://lh3.googleusercontent.com/pw/AM-JKLXWcEo-_DqlxM4Qh8ufve5_NT9ce9IQFz47Yv2LZgMK424QqnSwUUoadIi0dd1n9rYuNIRdmQnChfdOBxvNnUm1ywB3Nz9pw87g0l2EbR1Buci2_tnRRN1pGDcUbFaEGkfaLq4Zh1B8bPFQDuD9YiT1=w1016-h704-no?authuser=0)
+![my-vowels-m50-1](https://lh3.googleusercontent.com/pw/AM-JKLUsttRO_vvsE-rDfBmfP5l1fdFLsDR3kTI3VInHWDiQxhPk_M2OrrdtP_udFzFbkB-8aDYzvwZETh_MomsxpWWpAt6W2KYxSWngN5UQGUpQEcRifqdQMGjUBFwDBbmBRVoV_DFoffjWhZkUnN4iojj1=w1014-h705-no?authuser=0)
+![my-vowels-m76](https://lh3.googleusercontent.com/pw/AM-JKLX35FDj64bCM_Gt1KfxoLuMsFa2vHH9opJsTQrup2cZgqejCxu5MC26SJxmuaXNrnFzGTd0tC7uQwg7C40ZLbBV-VzukDPZ6FYr02un2j6nlsnXgnp7xSP0KEPqsmmlkZf2BInqkjJmGzvhpMeamCaU=w1015-h705-no?authuser=0)
+
+No we can actually see different vowel distributions for different speakers, but it's inconvenient having to scroll through all of the graphs trying to compare them. Ideally, it would be nice to have all the plots together in the same place to compare them, but so far I haven't figured out how to do that.
 
 #### Average Vowel Plot
 To reduce the amount of visual information we have to try to understand, we can instead calculate and plot vowel averages.
@@ -1338,14 +1429,103 @@ ggplot(data, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
     geom_point() +
     geom_label(data = means, aes(x = F2, y = F1)) +
     scale_x_reverse() + scale_y_reverse() +
-    scale_color_discrete(breaks = c("IY", "IH", "EY", "EH", "AE", "AY", "AW", "AH",
-                                    "AA", "AO", "OY", "OW", "UH", "UW", "ER")) +
     guides(color = "none") +
     ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
     theme_classic()
 ```
 
 Having both the averages and the vowel clouds is a bit better, but back to being kinda hard to read.
+
+If you want to show the average vowels of different speakers in the data, first you have to calculate their means separately.
+
+```
+means.speaker <- speaker_subset %>%
+    group_by(label) %>%
+    summarise(F1 = mean(f1_mean),
+              F2 = mean(f2_mean),
+              subject = "[insert speaker name]")
+```
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]`
+>
+>template = """
+>means.{speaker} <- subset.{speaker} %>%
+>    group_by(label) %>%
+>    summarise(F1 = mean(f1_mean),
+>              F2 = mean(f2_mean),
+>              subject = "{speaker}")
+>"""
+>
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
+
+If you want to plot speaker means separately, use this code:
+
+```
+ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, label = label, color = label)) +
+    geom_label(data = means.speaker, aes(x = F2, y = F1)) +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("[Insert Speaker Name] Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+    theme_classic() +
+    theme(legend.position="none")
+```
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]
+>
+>template = """
+>ggplot(subset.{speaker}, aes(x = f2_mean, y = f1_mean, label = label, color = label)) +
+>    geom_label(data = means.{speaker}, aes(x = F2, y = F1)) +
+>    scale_x_reverse() + scale_y_reverse() +
+>    ggtitle("{speaker} Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+>    theme_classic() +
+>    theme(legend.position="none")
+>"""
+>
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
+
+But if you want to plot speakers means on the same plot, you have to put all the speaker means together into one dataframe, e.g.:
+\
+`means.all <- rbind(means.speaker1, means.speaker2, means.speaker3...)`
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]`
+>
+>speaker_means = speakers.copy()
+>for i in range(len(speakers)):
+>    speaker_means[i] = "means." + speakers[i]
+>
+>means_string = str(speaker_means).strip("")
+>means_string = means_string.replace("[", "")
+>means_string = means_string.replace("]", "")
+>
+>template = "means.all <- rbind(" + means_string + ")"
+>
+>print(template)
+>```
+
+```
+ggplot(data, aes(x = f2_mean, y = f1_mean, label = label, color = {file/subject/speaker})) +
+    geom_label(data = means.all, aes(x = F2, y = F1)) +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") + labs(colour = "Speaker") +
+    theme_classic()
+```
+
+![my-vowels-3](https://lh3.googleusercontent.com/pw/AM-JKLUX6faRpPCezIhKutQosTFo-ZkOcofBcTH2c8cKebmpNIHLv6N0YPcfXU9poVjZrJET_Hfu98u87o_MaTMVinRZEHluxY4YFk7T-bdgI-udyYATprOLa9zTidIsvE9hwtZzQnkTNArWlNcpcHLOkPYy=w1013-h707-no?authuser=0)
 
 #### Ellipses Plots
 A different way of capturing the range of vowels along with their averages is with an ellipses plot. You can set up ellipses to show standard deviations from the means.
@@ -1359,29 +1539,93 @@ ggplot(data, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
     stat_ellipse(level = 0.67, geom = "polygon", alpha = 0.1, aes(fill = label)) +
     geom_label(data = means, aes(x = F2, y = F1)) +
     scale_x_reverse() + scale_y_reverse() +
-    scale_color_discrete(breaks = c("IY", "IH", "EY", "EH", "AE", "AY", "AW", "AH",
-                                    "AA", "AO", "OY", "OW", "UH", "UW", "ER")) +
     ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
     theme_classic() +
     theme(legend.position="none")
 ```
 
-But if you want a 95% confidence interval, which corresponsd to about 2 standard deviations from the mean, use this code:
+But if you want a 95% confidence interval, which corresponds to about 2 standard deviations from the mean, use this code:
 
 ```
 ggplot(data, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
     stat_ellipse(geom = "polygon", alpha = 0.1, aes(fill = label)) +
     geom_label(data = means, aes(x = F2, y = F1)) +
     scale_x_reverse() + scale_y_reverse() +
-    scale_color_discrete(breaks = c("IY", "IH", "EY", "EH", "AE", "AY", "AW", "AH",
-                                    "AA", "AO", "OY", "OW", "UH", "UW", "ER")) +
     ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
     theme_classic() +
     theme(legend.position="none")
 ```
 
+Ellipses plots like these are pretty nice, but plotting different speakers on the same graph would be too hard to read (unless, perhaps, you only had a few vowels per speaker). So if you want to show different speakers with ellipes plots, you'll have to make a separate plot for each speaker.
+
+1 standard deviation:
+\
+```
+ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
+    stat_ellipse(level = 0.67, geom = "polygon", alpha = 0.1, aes(fill = label)) +
+    geom_label(data = means.speaker, aes(x = F2, y = F1)) +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("[Insert Speaker Name] Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+    theme_classic() +
+    theme(legend.position="none")
+```
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]
+>
+>template = """
+>ggplot(subset.{speaker}, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
+>    stat_ellipse(level = 0.67, geom = "polygon", alpha = 0.1, aes(fill = label)) +
+>    geom_label(data = means.{speaker}, aes(x = F2, y = F1)) +
+>    scale_x_reverse() + scale_y_reverse() +
+>    ggtitle("{speaker} Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+>    theme_classic() +
+>    theme(legend.position="none")
+>"""
+>
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
+
+2 standard deviations:
+\
+```
+ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
+    stat_ellipse(geom = "polygon", alpha = 0.1, aes(fill = label)) +
+    geom_label(data = means.speaker, aes(x = F2, y = F1)) +
+    scale_x_reverse() + scale_y_reverse() +
+    ggtitle("[Insert Speaker Name] Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+    theme_classic() +
+    theme(legend.position="none")
+```
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]
+>
+>template = """
+>ggplot(subset.{speaker}, aes(x = f2_mean, y = f1_mean, color = label, label = label)) +
+>    stat_ellipse(geom = "polygon", alpha = 0.1, aes(fill = label)) +
+>    geom_label(data = means.{speaker}, aes(x = F2, y = F1)) +
+>    scale_x_reverse() + scale_y_reverse() +
+>    ggtitle("{speaker} Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+>    theme_classic() +
+>    theme(legend.position="none")
+>"""
+>
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
+
 ##### Plots Source
-The vowel plots so far come from [**Making vowels in R (Part 1)**](https://joeystanley.com/blog/making-vowel-plots-in-r-part-1), and the code so far was adapted from this tutorial to work for our organized data. This tutorial gives a deeper explanation of the bits and pieces that make up the plots.
+Most of the vowel plots so far come from [**Making vowels in R (Part 1)**](https://joeystanley.com/blog/making-vowel-plots-in-r-part-1), and the corresponding code was adapted from this tutorial to work for our organized data. (This tutorial gives a deeper explanation of how these plots were put together step by step.)
+
+Plots that have "Vowel Plot" in the title are ones that I made, using a different dataset (the same as from the [plotting voices section](#plotting-voices)) and different colors.
 
 #### Contour Plot
 Ellipses plots are a step in the right direction, especially with the transparent color fill. But [this linguist](http://christiandicanio.blogspot.com/2013/10/visualizing-vowel-spaces-in-r-from.html) argues that a better way of capturing vowel range is with **contour plots**, or 2D density plots.
@@ -1403,7 +1647,44 @@ In addition, contour plots sometimes seem to just ignore some of your vowels, fo
 
 The current code for plots like these is here:
 
-`ggplot(data, aes(x = f2_mean, y = f1_mean)) + geom_density_2d(aes(color = label)) + scale_y_reverse() + scale_x_reverse()`
+```
+ggplot(data, aes(x = f2_mean, y = f1_mean, color = label)) + geom_density_2d() +
+    scale_y_reverse() + scale_x_reverse() +
+    scale_color_discrete(breaks = c("IY", "IH", "EY", "EH", "AE", "AY", "AW", "AH",
+                                    "AA", "AO", "OY", "OW", "UH", "UW", "ER")) +
+    ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+    theme_classic()
+```
+
+If you want to plot multiple speakers separately:
+
+```
+ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, color = label)) + geom_density_2d() +
+    scale_y_reverse() + scale_x_reverse() +
+    scale_color_discrete(breaks = c("IY", "IH", "EY", "EH", "AE", "AY", "AW", "AH",
+                                    "AA", "AO", "OY", "OW", "UH", "UW", "ER")) +
+    ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+    theme_classic()
+```
+
+>**Streamlining Tip:**
+>\
+>```
+># change list of speakers
+>speakers = ["20F", "22F", "50F", "50M", "76M"]
+>
+>template = """
+>ggplot(subset.{speaker}, aes(x = f2_mean, y = f1_mean, color = label)) + geom_density_2d() +
+>    scale_y_reverse() + scale_x_reverse() +
+>    scale_color_discrete(breaks = c("IY", "IH", "EY", "EH", "AE", "AY", "AW", "AH",
+>                                    "AA", "AO", "OY", "OW", "UH", "UW", "ER")) +
+>    ggtitle("Vowel Plot") + xlab("F2 (Hz)") + ylab("F1 (Hz)") +
+>    theme_classic()
+>"""
+>
+>for person in speakers:
+>    print(template.format(speaker=person))
+>```
 
 ## Add to the Guide
 As you can see in the previous section, this guide is still a work in progress. There are things that I haven't figured out, and there are undoubtedly more useful phonetic analysis softwares that haven't been discussed here. That's why in this last section, I'll tell you how to modify this guide.
