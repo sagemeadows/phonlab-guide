@@ -935,7 +935,7 @@ If you have questions about Python itself, there are plenty of tutorials on the 
 If you’re not picky about how your organized data looks and you don’t really care how it gets done, you can run a pre-written Python script from the command line and let it do the organizing for you.
 
 1. [Download `organize.py`](https://drive.google.com/file/d/1ha5LIiXVxfymmb3wudKQSf7hqYWmL4-h/view?usp=sharing) and put it somewhere in your files
-2. Open your command line
+2. Open your command line and change directories to wherever you put `organize.py`
 3. Run the script
 
 The structure of the command to run the script looks like this, with optional parts in parentheses (remove the parentheses if you use them):
@@ -947,13 +947,13 @@ This command contains, in order:
 - the command to use Python, `python3`
 - the path from your current location to the Python script `organize.py`
 - the path from your current location to the `aggregated_data.csv` file you want to organize
-- OPTOINAL: the path from your current location to another `aggregated_data.csv` file you want to append
+- OPTIONAL: the path from your current location to another `aggregated_data.csv` file you want to append
     - You can add as many `aggregated_data.csv` files as you want
-- OPTIONAL: `-l` or `--lite`, which will get rid of the time-spaced FastTrack formant measures after getting the average measures to make the data easier to read
-- OPTIONAL: `-s` or `--save`, which will make the script save a `.csv` file on your computer with the organized data
-    - OPTIONAL: `-e [path_to_output_directory]/` or `--elsewhere [path_to_output_directory]/`, which will save the organized data in the directory of your choice (if you don't use `-e`, the file will be saved in your current directory)
+- OPTION: `-l` or `--lite`, which will get rid of the time-spaced FastTrack formant measures after getting the average measures to make the data easier to read
+- OPTION: `-s` or `--save`, which will make the script save a `.csv` file on your computer with the organized data
+    - OPTION: `-e [path_to_output_directory]/` or `--elsewhere=[path_to_output_directory]/`, which will save the organized data in the directory of your choice (if you don't use `-e`, the file will be saved in your current directory)
 
-To learn more about the script's options, navigate to wherever you stored `organize.py` and type `python3 organize.py -h` or `python3 organize.py --help`.
+To learn more about the script's options, type `python3 organize.py -h` or `python3 organize.py --help`.
 
 ```
 $ python3 organize.py --help
@@ -1381,7 +1381,7 @@ ggplot(data, aes(x = f2_mean, y = f1_mean, color = {file/subject/speaker})) +
 
 Unfortunately, this is super hard to read. Instead, we might want to separate the speakers out so each one gets their own graph. To do that, first we have to separate out the different speakers into subsets of the data.
 
-Making a subset looks like this, where `foo` is a variable name (could be anything), :
+Making a subset looks like this:
 \
 `foo <- subset(data, factor=="blah")`
 
@@ -1408,7 +1408,7 @@ In this example, `foo` is a variable name (could be anything as long as it doesn
 >```
 >5. Copy the printed output and paste it into your R code.
 
-Now to get a plot of just one speaker, replace `subset_data` in the code below with the name of one of your data subsets.
+Now to get a plot of just one speaker, replace `speaker_subset` in the code below with the name of one of your data subsets.
 
 ```
 ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, label = label, color = label)) +
@@ -1443,7 +1443,7 @@ ggplot(speaker_subset, aes(x = f2_mean, y = f1_mean, label = label, color = labe
 ![my-vowels-m50-1](https://lh3.googleusercontent.com/pw/AM-JKLUsttRO_vvsE-rDfBmfP5l1fdFLsDR3kTI3VInHWDiQxhPk_M2OrrdtP_udFzFbkB-8aDYzvwZETh_MomsxpWWpAt6W2KYxSWngN5UQGUpQEcRifqdQMGjUBFwDBbmBRVoV_DFoffjWhZkUnN4iojj1=w1014-h705-no?authuser=0)
 ![my-vowels-m76](https://lh3.googleusercontent.com/pw/AM-JKLX35FDj64bCM_Gt1KfxoLuMsFa2vHH9opJsTQrup2cZgqejCxu5MC26SJxmuaXNrnFzGTd0tC7uQwg7C40ZLbBV-VzukDPZ6FYr02un2j6nlsnXgnp7xSP0KEPqsmmlkZf2BInqkjJmGzvhpMeamCaU=w1015-h705-no?authuser=0)
 
-No we can actually see different vowel distributions for different speakers, but it's inconvenient having to scroll through all of the graphs trying to compare them. Ideally, it would be nice to have all the plots together in the same place to compare them, but so far I haven't figured out how to do that.
+Now we can actually see different vowel distributions for different speakers, but it's inconvenient having to scroll through all of the graphs trying to compare them. Ideally, it would be nice to have all the plots together in the same place to compare them, but so far I haven't figured out how to do that.
 
 #### Average Vowel Plot
 To reduce the amount of visual information we have to try to understand, we can instead calculate and plot vowel averages.
